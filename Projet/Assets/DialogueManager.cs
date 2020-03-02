@@ -34,7 +34,13 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+
+        string sentence = sentences.Dequeue();
+        Debug.Log(sentence);
     }
 
-
+    void EndDialogue()
+    {
+        Debug.Log("End of conversation.");
+    }
 }
