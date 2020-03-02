@@ -1,10 +1,24 @@
 ﻿using UnityEngine;
+using System;
 
 public class ActionJoueur : MonoBehaviour
 {
     public float range;
     public Camera camera;
     public Transform objetTenu=null;
+    public Transform destination;
+    public float forceDeLancer;
+    private float tailleRamasse;
+    //Liste de tous les scripts présents dans le jeu
+
+
+
+    //Méthode Start
+    void Start()
+    {
+        //Initialiser les scripts
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -19,24 +33,39 @@ public class ActionJoueur : MonoBehaviour
 
     void Interagir()
     {
-        int layerMaskJoueur=1<<10 | 1<<12;
-        layerMaskJoueur = ~layerMaskJoueur;
+        int layerMaskSansInteraction=1<<10 | 1<<9 | 1 << 11;
+        layerMaskSansInteraction = ~layerMaskSansInteraction;
         RaycastHit hit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskJoueur ) )
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskSansInteraction ) )
         {
-            Debug.Log(hit.transform.name);
+            //Aller a travers la liste des scripts de l'objet pour utiliser celui qui possede interaction
+            var listeComponents = hit.transform.gameObject.GetComponents(typeof(MonoBehaviour));
+            foreach (MonoBehaviour script in listeComponents)
+            {
+                try
+                {
+                    MiniObjet miniObjet = (MiniObjet)script;
+                    miniObjet.interaction(destination.gameObject);
+                    tailleRamasse = miniObjet.tailleRamasse;
+                } catch(Exception e)
+                {
+                }
+            }
+            Debug.Log("Objet ramassé:"+hit.transform.name);
             objetTenu = hit.transform;
-            objetTenu.localScale += new Vector3(-0.5f, -0.5f, -0.5f);
-            objetTenu.position = camera.transform.position + camera.transform.forward + new Vector3(-0.5f, -0.5f, 0);
-            objetTenu.rotation = camera.transform.rotation;
-            objetTenu.gameObject.layer = 11;
-            objetTenu.parent = camera.transform;
-            objetTenu = hit.transform;
+            Debug.Log("Objet tenu:" + objetTenu.name);
+
         }
     }
 
     void Lancer()
     {
-        objetTenu.parent = null;
+
+        objetTenu.gameObject.GetComponent<Rigidbody>().isKinematic = false; //Redonner des physiques a l'objet
+        objetTenu.gameObject.GetComponent<Rigidbody>().AddForce(destination.forward*forceDeLancer); 
+        objetTenu.localScale = objetTenu.localScale / tailleRamasse;
+        destination.DetachChildren();
+        objetTenu = null;
+
     }   
 }

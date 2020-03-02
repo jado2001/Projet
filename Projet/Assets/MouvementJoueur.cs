@@ -8,18 +8,18 @@ public class MouvementJoueur : MonoBehaviour
     public float hauteurSaut = 100;
     Vector3 rapidite;
     public Transform checkPlancher;
-    public float distanceCheck = 0.4f;
+    public float distanceCheck=0.4f;
     bool estGrounded;
     public LayerMask couchePlancher;
     // Update is called once per frame
     void Update()
     {
         //Inputs Joueur
-        float deplacementX = Input.GetAxis("Horizontal");
-        float deplacementZ = Input.GetAxis("Vertical");
+        float deplacementX= Input.GetAxis("Horizontal");
+        float deplacementZ= Input.GetAxis("Vertical");
         //Modification des vecteurs de deplacement
         rapidite.y += gravite * Time.deltaTime;
-        Vector3 deplacement = transform.right * deplacementX + transform.forward * deplacementZ;
+        Vector3 deplacement = transform.right*deplacementX + transform.forward*deplacementZ;
         //Verifier si le joueur est sur le plancher
         estGrounded = Physics.CheckSphere(checkPlancher.position, distanceCheck, couchePlancher);
         if (estGrounded)
@@ -32,7 +32,7 @@ public class MouvementJoueur : MonoBehaviour
             rapidite.y += Mathf.Sqrt(hauteurSaut * -2 * gravite);
         }
         //Mouvement Joueur
-        controleurJoueur.Move(deplacement * Time.deltaTime * speed);
+        controleurJoueur.Move(deplacement * Time.deltaTime*speed);
         controleurJoueur.Move(rapidite * Time.deltaTime);
 
 

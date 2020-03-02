@@ -16,13 +16,13 @@ public class MouvementCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X")*sensibiliteCamera*Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * sensibiliteCamera * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensibiliteCamera * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        joueur.Rotate(Vector3.up* mouseX);
-        transform.localRotation= Quaternion.Euler(xRotation,0,0);
-        
+        joueur.Rotate(Vector3.up * mouseX);
+        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+
     }
 }
