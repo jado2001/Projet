@@ -8,7 +8,7 @@ public class Porte : Objet
     override
       public Transform interaction(GameObject destination)
     {
-        return transform;
+        return null;
     }
 
     override

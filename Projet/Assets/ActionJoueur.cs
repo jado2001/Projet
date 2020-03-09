@@ -7,18 +7,16 @@ public class ActionJoueur : MonoBehaviour
     public Camera camera;
     public Transform objetTenu=null;
     public Transform destination;
-    public float forceDeLancer,tailleRamasse,layerObjet;
+    public float forceDeLancer,tailleRamasse,layerObjet, vie=100,faim=100,vitesse=100;
     //Liste de tous les scripts présents dans le jeu
 
 
 
     //Méthode Start
     void Start()
-    {
-        //Initialiser les scripts
-        Debug.Log("Boogieman");
-        
+    {   
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -38,27 +36,54 @@ public class ActionJoueur : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskSansInteraction ) )
         {
-            Debug.DrawRay(camera.transform.position, camera.transform.forward, Color.red);
             //Sauvegarde
             Transform sauvegarde=null;
             //Sauvegarder le premier objet Tenu + Lâcher l'objet
             if (objetTenu !=null)
             {
             sauvegarde = objetTenu;
-            lacher();
             }
             //Aller a travers la liste des scripts de l'objet pour utiliser celui qui possede interaction
-            var listeComponents = hit.transform.gameObject.GetComponents(typeof(MonoBehaviour));
-            foreach (MonoBehaviour script in listeComponents)
+            var listeComponents = hit.transform.gameObject.GetComponents(typeof(Objet));
+            foreach (Objet script in listeComponents)
             {
                 try
                 {
-                    //Cast le script en Objet pour appeler la méthode Intéragir
-                    Objet objet = (Objet)script;
-                    objetTenu= objet.interaction(destination.gameObject);
-                    tailleRamasse = objet.tailleRamasse; //Prendre la taille de l'objet
-                    layerObjet = objet.layerObjet;
-                    Debug.Log(layerObjet);
+                    //Vérifier si l'objet intérragit est un 'Nourriture' dont le boolean estPreparee=true
+
+                    if (script.GetType().Equals(typeof(Nourriture)))
+                    {
+                        Nourriture nourriture = (Nourriture)script;
+                        if (nourriture.estPreparee)
+                        {
+                            //Modifier les stats du Joueur
+                            vie = vie + nourriture.vieRecuperee;
+                            faim = faim + nourriture.faimRecuperee;
+                            vitesse = vitesse + nourriture.vitesseRecuperee;
+                            //Détruire l'objet
+                            Destroy(hit.transform.gameObject);
+                        } else {
+                            if (objetTenu != null)
+                                lacher();
+                            objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
+                            if (objetTenu != null)
+                            {
+                                tailleRamasse = script.tailleRamasse; //Prendre la taille de l'objet
+                                layerObjet = script.layerObjet; //Prendre son layer
+                            }
+                        }
+                        
+                    } else
+                    {
+                        if (objetTenu!=null) 
+                        lacher();
+                        objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
+                        if (objetTenu != null)
+                        {
+                            tailleRamasse = script.tailleRamasse; //Prendre la taille de l'objet
+                            layerObjet = script.layerObjet; //Prendre son layer
+                        }
+                    }
                 } catch(Exception e)
                 {
                 }
@@ -77,6 +102,7 @@ public class ActionJoueur : MonoBehaviour
     {
 
         objetTenu.gameObject.GetComponent<Rigidbody>().isKinematic = false; //Redonner des physiques a l'objet
+        objetTenu.localRotation = new Quaternion(1, 2, 3, 0);
         objetTenu.gameObject.GetComponent<Rigidbody>().AddForce(destination.forward*forceDeLancer);
         lacher();
 

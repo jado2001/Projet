@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Bouton : Objet
 {
+    public Porte porte;
     override
     public Transform interaction(GameObject destination) {
-        return transform;
+        porte.ouvrir();
+        return null;
     }
 
     override
