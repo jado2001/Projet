@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour {
     public Text nameText;
     public Text dialogueText;
 
+    public Animator animator;
 
     private Queue<string> sentences;//FIFO, first in, first out
 
@@ -19,7 +20,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void StartDialogue(Dialogue dialogue)
     {
-        
+        animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;
         sentences.Clear();
@@ -42,11 +43,22 @@ public class DialogueManager : MonoBehaviour {
         }
 
         string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
+        StopAllCoroutines();//arrête TypeSentence si le joueur clique sur continuer avant que l'animation soit terminée
+        StartCoroutine(TypeSentence(sentence));
+    }
+
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;//on ajoute la lettre à la phrase
+            yield return null;//attendre 1 frame avant d'ajouter la prochaine lettre
+        }
     }
 
     void EndDialogue()
     {
-        Debug.Log("End of conversation.");
+        animator.SetBool("IsOpen", false);
     }
 }
