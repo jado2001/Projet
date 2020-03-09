@@ -11,10 +11,10 @@ public class MiniObjet: Objet
         layerObjet = transform.gameObject.layer;
         //Ramasser l'objet
         transform.position = destination.transform.position;
-        transform.localRotation = destination.transform.localRotation;
-        //transform.localScale = transform.localScale*tailleRamasse; 
+        transform.localScale = transform.localScale*tailleRamasse; 
         transform.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         transform.parent = destination.transform;
+        transform.localRotation = new Quaternion(0,0,0,0);
         gameObject.layer = 11;
         return transform;
     }

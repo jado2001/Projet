@@ -85,7 +85,7 @@ public class ActionJoueur : MonoBehaviour
     private void lacher()
     {
         objetTenu.gameObject.GetComponent<Rigidbody>().isKinematic = false; //Redonner des physiques a l'objet
-        //objetTenu.localScale = objetTenu.localScale / tailleRamasse;
+        objetTenu.localScale = objetTenu.localScale / tailleRamasse;
         destination.DetachChildren();
         objetTenu.gameObject.layer = (int) layerObjet;
         objetTenu = null;
