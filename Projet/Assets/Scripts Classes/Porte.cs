@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Porte : MonoBehaviour
+public class Porte : Objet
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool ouvert;
+    override
+      public Transform interaction(GameObject destination)
     {
-        
+        return transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    override
+    public void utiliser()
     {
-        
+    }
+
+    public void ouvrir()
+    {
+
     }
 }
