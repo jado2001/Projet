@@ -1,20 +1,20 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 public class ActionJoueur : MonoBehaviour
 {
     public float range;
     public Camera camera;
-    public Transform objetTenu=null;
+    public Transform objetTenu = null;
     public Transform destination;
-    public float forceDeLancer,tailleRamasse,layerObjet, vie=100,faim=100,vitesse=100;
+    public float forceDeLancer, tailleRamasse, layerObjet, vie = 100, faim = 100, vitesse = 100;
     //Liste de tous les scripts présents dans le jeu
 
 
 
     //Méthode Start
     void Start()
-    {   
+    {
     }
 
     // Update is called once per frame
@@ -23,7 +23,8 @@ public class ActionJoueur : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Interagir();
-        } else if (Input.GetButtonDown("Fire2"))
+        }
+        else if (Input.GetButtonDown("Fire2"))
         {
             Lancer();
         }
@@ -31,17 +32,17 @@ public class ActionJoueur : MonoBehaviour
 
     void Interagir()
     {
-        int layerMaskSansInteraction=1<<10 | 1<<9 | 1 << 11 | 1 << 0;
+        int layerMaskSansInteraction = 1 << 10 | 1 << 9 | 1 << 11 | 1 << 0;
         layerMaskSansInteraction = ~layerMaskSansInteraction;
         RaycastHit hit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskSansInteraction ) )
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskSansInteraction))
         {
             //Sauvegarde
-            Transform sauvegarde=null;
+            Transform sauvegarde = null;
             //Sauvegarder le premier objet Tenu + Lâcher l'objet
-            if (objetTenu !=null)
+            if (objetTenu != null)
             {
-            sauvegarde = objetTenu;
+                sauvegarde = objetTenu;
             }
             //Aller a travers la liste des scripts de l'objet pour utiliser celui qui possede interaction
             var listeComponents = hit.transform.gameObject.GetComponents(typeof(Objet));
@@ -62,9 +63,14 @@ public class ActionJoueur : MonoBehaviour
                             vitesse = vitesse + nourriture.vitesseRecuperee;
                             //Détruire l'objet
                             Destroy(hit.transform.gameObject);
-                        } else {
+                        }
+                        else
+                        {
                             if (objetTenu != null)
+                            {
                                 lacher();
+                            }
+                            objetTenu.position = hit.transform.position; //Déplacer l'objet tenu
                             objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
                             if (objetTenu != null)
                             {
@@ -72,11 +78,14 @@ public class ActionJoueur : MonoBehaviour
                                 layerObjet = script.layerObjet; //Prendre son layer
                             }
                         }
-                        
-                    } else
+                    }
+                    else
                     {
-                        if (objetTenu!=null) 
-                        lacher();
+                        if (objetTenu != null)
+                        {
+                            lacher();
+                        }
+                       objetTenu.position = hit.transform.position; //Déplacer l'objet tenu
                         objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
                         if (objetTenu != null)
                         {
@@ -84,17 +93,18 @@ public class ActionJoueur : MonoBehaviour
                             layerObjet = script.layerObjet; //Prendre son layer
                         }
                     }
-                } catch(Exception e)
+                }
+                catch (Exception e)
                 {
                 }
             }
-            Debug.Log("Objet ramassé:"+hit.transform.name);
+            Debug.Log("Objet ramassé:" + hit.transform.name);
             //Vérifier si un nouvel objet est Tenu
             if (objetTenu == null)
             {
                 objetTenu = sauvegarde;
             }
-            
+
         }
     }
 
@@ -103,17 +113,17 @@ public class ActionJoueur : MonoBehaviour
 
         objetTenu.gameObject.GetComponent<Rigidbody>().isKinematic = false; //Redonner des physiques a l'objet
         objetTenu.localRotation = new Quaternion(1, 2, 3, 0);
-        objetTenu.gameObject.GetComponent<Rigidbody>().AddForce(destination.forward*forceDeLancer);
+        objetTenu.gameObject.GetComponent<Rigidbody>().AddForce(destination.forward * forceDeLancer);
         lacher();
 
     }
-    
+
     private void lacher()
     {
         objetTenu.gameObject.GetComponent<Rigidbody>().isKinematic = false; //Redonner des physiques a l'objet
         objetTenu.localScale = objetTenu.localScale / tailleRamasse;
         destination.DetachChildren();
-        objetTenu.gameObject.layer = (int) layerObjet;
+        objetTenu.gameObject.layer = (int)layerObjet;
         objetTenu = null;
     }
 }
