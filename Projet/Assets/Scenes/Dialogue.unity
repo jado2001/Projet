@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 424566895}
   - component: {fileID: 424566894}
   m_Layer: 5
-  m_Name: InteragirRC (1)
+  m_Name: InteragirPiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,11 +407,11 @@ MonoBehaviour:
     sentences:
     - "Bienvenue dans les panneaux \xE9lectriques du vaisseau Kingfish ! \xCAtes-vous
       pr\xEAts \xE0 apprendre de nouvelles choses ?"
-    - Dans ce panneau, nous verrons les circuits RC et les condensateurs !
-    - "L'\xE9l\xE9ment du circuit qui est compl\xE8tement \xE0 gauche est un condensateur.
-      Un condensateur est un dispositif qui permet d'accumuler des charges. Dans
-      la vie r\xE9elle, on s'en sert notamment pour les flash d'appareil photo et
-      le d\xE9fibrilateur cardiaque.\n"
+    - Dans ce panneau, nous verrons les lois de Kirchhoff et ce qui arrive lorsqu'on
+      a 2 piles dans un circuit !
+    - "La premi\xE8re loi de Kirchhoff est la loi des noeuds. Selon cette loi, tout
+      le courant qui entre dans un noeud doit n\xE9cessairement en ressortir. Autrement
+      dit,\n \u03A3 I(entrant)=\u03A3 I(sortant).\n"
     - "Le condensateur de ce circuit est un condensateur plan. Il poss\xE8de deux
       plaques parall\xE8les qu'on appelle ses armatures. Lorsqu'on parle de la charge
       accumul\xE9e dans un condensateur, on parle de la charge sur l'une des armatures."
@@ -755,7 +755,7 @@ MonoBehaviour:
       de mesure qui peuvent \xEAtre utilis\xE9s dans les circuits \xE9lectriques."
     - "Deux \xE9l\xE9ments sont en s\xE9rie s'ils font partie de la m\xEAme branche.
       Autrement dit, ils font partie d'un segment de circuit d\xE9limit\xE9 par deux
-      noeuds. (Un noeud est un lieu o\xF9 plusieurs fils se croisent.)"
+      noeuds. (Un noeud est un point o\xF9 3 fils ou plus se croisent.)"
     - "De plus, puisqu'ils font partie de la m\xEAme branche, cela implique qu'ils
       sont travers\xE9s par le m\xEAme courant. Par exemple, les deux r\xE9sistances
       se trouvant sur la branche du bas sont en s\xE9rie."
