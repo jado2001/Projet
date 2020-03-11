@@ -8,10 +8,12 @@ public class ActionJoueur : MonoBehaviour
     public Transform objetTenu = null;
     public Transform destination;
     public float forceDeLancer, tailleRamasse, layerObjet, vie = 100, faim = 100, vitesse = 100;
+    private Vector3 positionObjet = new Vector3(0f,0f,0f);
     //Liste de tous les scripts présents dans le jeu
 
-
-
+/// <summary>
+/// IL FAUT RÉGLER mANGER PENDANT QU'ON TIENT UN OBJET
+/// </summary>
     //Méthode Start
     void Start()
     {
@@ -37,8 +39,10 @@ public class ActionJoueur : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskSansInteraction))
         {
+            
             //Sauvegarde
             Transform sauvegarde = null;
+            positionObjet = hit.transform.position;
             //Sauvegarder le premier objet Tenu + Lâcher l'objet
             if (objetTenu != null)
             {
@@ -51,14 +55,13 @@ public class ActionJoueur : MonoBehaviour
                 try
                 {
                     //Vérifier si l'objet intérragit est un 'Nourriture' dont le boolean estPreparee=true
-
                     if (script.GetType().Equals(typeof(Nourriture)))
                     {
                         Nourriture nourriture = (Nourriture)script;
                         if (nourriture.estPreparee)
                         {
                             //Modifier les stats du Joueur
-                            vie = vie + nourriture.vieRecuperee;
+                            vie = vie + nourriture.vieRecuperee;    
                             faim = faim + nourriture.faimRecuperee;
                             vitesse = vitesse + nourriture.vitesseRecuperee;
                             //Détruire l'objet
@@ -70,7 +73,7 @@ public class ActionJoueur : MonoBehaviour
                             {
                                 lacher();
                             }
-                            objetTenu.position = hit.transform.position; //Déplacer l'objet tenu
+                            
                             objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
                             if (objetTenu != null)
                             {
@@ -85,7 +88,6 @@ public class ActionJoueur : MonoBehaviour
                         {
                             lacher();
                         }
-                       objetTenu.position = hit.transform.position; //Déplacer l'objet tenu
                         objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
                         if (objetTenu != null)
                         {
@@ -103,6 +105,9 @@ public class ActionJoueur : MonoBehaviour
             if (objetTenu == null)
             {
                 objetTenu = sauvegarde;
+            } else
+            {
+                sauvegarde.position = positionObjet; //Déplacer l'objet tenu;
             }
 
         }
