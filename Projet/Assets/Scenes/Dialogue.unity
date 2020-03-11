@@ -412,29 +412,23 @@ MonoBehaviour:
     - "La premi\xE8re loi de Kirchhoff est la loi des noeuds. Selon cette loi, tout
       le courant qui entre dans un noeud doit n\xE9cessairement en ressortir. Autrement
       dit,\n \u03A3 I(entrant)=\u03A3 I(sortant).\n"
-    - "Le condensateur de ce circuit est un condensateur plan. Il poss\xE8de deux
-      plaques parall\xE8les qu'on appelle ses armatures. Lorsqu'on parle de la charge
-      accumul\xE9e dans un condensateur, on parle de la charge sur l'une des armatures."
-    - "Lorsqu'on parle d'un condensateur, on parle aussi souvent de sa capacit\xE9.
-      Cela correspond \xE0 la quantit\xE9 de charge emmagasin\xE9e par unit\xE9 de
-      diff\xE9rence de potentiel appliqu\xE9e \xE0 ses bornes. \n"
-    - "La capacit\xE9 d'un condensateur d\xE9pend de trois facteurs: 1) L'aire des
-      armatures 2) Le type de di\xE9lectrique entre les armatures 3)La distance entre
-      les armatures."
-    - "Mais alors, qu'est-ce qu'un ciruit RC ? C'est tout simplement un circuit qui
-      contient des r\xE9sisteurs et des condensateurs. Dans le circuit RC devant
-      vous, la branche de la pile est reli\xE9e seulement au condensateur par un
-      interrupteur."
-    - "Cela fait en sorte que la pile charge le condensateur. Lorsque le condensateur
-      est compl\xE8tement charg\xE9, on dit que le circuit est en r\xE9gime permanent.
-      Au r\xE9gime permanent, le courant dans la branche du condensateur est nul."
-    - "Pour d\xE9charger le condensateur, on peut relier la branche du condensateur
-      \xE0 l'autre c\xF4t\xE9 du circuit en d\xE9pla\xE7ant l'interrupteur. Les charges
-      en surplus sur une des armatures iront alors rejoindre l'autre armature jusqu'\xE0
-      ce que chaque armature redevienne neutre."
-    - "C'est tout pour ce panneau! Si vous voulez continuez \xE0 apprendre de nouvelles
-      choses sur les circuits \xE9lectriques, continuez \xE0 explorer pour trouver
-      les autres panneaux !"
+    - "Si on applique cette loi au noeud sup\xE9rieur gauche, on obtient I(1)=I(2)+I(3)
+      ."
+    - "La deuxi\xE8me loi est la loi des mailles. Une maille est un parcours ferm\xE9
+      dans le circuit qui nous ram\xE8ne au point de d\xE9part. \n"
+    - "Lorsqu'on parcourt une maille, on peut rencontrer des piles et des r\xE9sisteurs
+      qui correspondent \xE0 des hausses ou des baisses de potentiel (cela d\xE9pend
+      de l'orientation des piles ou du sens du courant)."
+    - "Une fois qu'on est revenu au point de d\xE9part de la maille, on doit n\xE9cessairement
+      \xEAtre au m\xEAme potentiel. Cela signifie que la somme des hausses et des
+      baisses de potentiel qu'on a observ\xE9es doit \xEAtre \xE9gale \xE0 0. Autrement
+      dit, \u03A3 \u0394V =0 .\n"
+    - "Appliquons cette loi \xE0 la maille partant de la borne positive de la pile
+      inf\xE9rieure gauche et qui passe par R1 pour revenir \xE0 la borne n\xE9gative
+      de la m\xEAme pile. On obtient alors \u03B5 (potentiel de la pile) - R1 * I(3)
+      =0"
+    - 
+    - 
 --- !u!114 &424566896
 MonoBehaviour:
   m_ObjectHideFlags: 0
