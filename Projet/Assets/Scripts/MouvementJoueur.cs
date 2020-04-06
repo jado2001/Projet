@@ -3,7 +3,7 @@
 public class MouvementJoueur : MonoBehaviour
 {
     public CharacterController controleurJoueur;
-    public float speed = 12f;
+    public Joueur joueur;
     public float gravite = -9.81f;
     public float hauteurSaut = 100;
     Vector3 rapidite;
@@ -32,7 +32,7 @@ public class MouvementJoueur : MonoBehaviour
             rapidite.y += Mathf.Sqrt(hauteurSaut * -2 * gravite);
         }
         //Mouvement Joueur
-        controleurJoueur.Move(deplacement * Time.deltaTime*speed);
+        controleurJoueur.Move(deplacement * Time.deltaTime*joueur.vitesse);
         controleurJoueur.Move(rapidite * Time.deltaTime);
 
 

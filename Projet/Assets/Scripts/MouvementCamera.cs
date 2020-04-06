@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouvementCamera : MonoBehaviour
 {
-    public float sensibiliteCamera = 100f;
+    public float sensibiliteCamera = 90f;
     public Transform joueur;
     float xRotation = 0f;
     // Start is called before the first frame update

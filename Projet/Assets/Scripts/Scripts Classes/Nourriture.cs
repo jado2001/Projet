@@ -10,6 +10,8 @@ public class Nourriture : MiniObjet
     override
     public Transform interaction(GameObject destination)
     {
+        if (!estPreparee)
+        {
             layerObjet = transform.gameObject.layer;
             //Ramasser l'objet
             transform.position = destination.transform.position;
@@ -19,7 +21,20 @@ public class Nourriture : MiniObjet
             transform.localRotation = new Quaternion(0, 0, 0, 0);
             gameObject.layer = 11;
             return transform;
- 
+        }
+        else
+        {
+            var listeComponents = destination.GetComponents(typeof(Joueur));
+            foreach (Joueur script in listeComponents)
+            {
+                script.jaugeDeVie += vieRecuperee;
+                script.jaugeDeFaim += faimRecuperee;
+                script.vitesse += vitesseRecuperee;
+            }
+            Destroy(this.gameObject);
+            return null;
+        }
+
     }
 
     override

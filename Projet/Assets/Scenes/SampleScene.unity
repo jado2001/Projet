@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -156,10 +156,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tailleRamasse: 0.5
   layerObjet: 0
-  vitesseRecuperee: 15
+  vitesseRecuperee: 0
   faimRecuperee: 15
   vieRecuperee: 15
-  estPreparee: 1
+  estPreparee: 0
 --- !u!54 &7800773
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -321,6 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 495206239}
+  - component: {fileID: 495206240}
   m_Layer: 10
   m_Name: Destination
   m_TagString: Untagged
@@ -342,6 +343,22 @@ Transform:
   m_Father: {fileID: 963194228}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &495206240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495206238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86314cdaea46b154eb913a79cccb6d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  estAssome: 0
+  jaugeDeVie: 100
+  jaugeDeFaim: 100
+  vitesse: 10
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controleurJoueur: {fileID: 1224564006}
-  speed: 12
+  joueur: {fileID: 495206240}
   gravite: -19.62
   hauteurSaut: 3
   checkPlancher: {fileID: 2042051592}
@@ -1280,9 +1297,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.27283132
-  m_Height: 1.1617788
+  m_Height: 0.8815447
   m_Direction: 1
-  m_Center: {x: 0, y: -0.0055552726, z: -0.000000089406974}
+  m_Center: {x: 0, y: 0.018627347, z: -0.00000008940698}
 --- !u!1 &1990772936
 GameObject:
   m_ObjectHideFlags: 0
