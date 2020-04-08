@@ -54,7 +54,7 @@ public class ActionJoueur : MonoBehaviour
             {
                 lacher();
             }
-            objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
+                objetTenu = script.interaction(destination.gameObject); // Prendre/Intéragir avec l'objet
             if (objetTenu != null)
             {
                 tailleRamasse = script.tailleRamasse; //Prendre la taille de l'objet

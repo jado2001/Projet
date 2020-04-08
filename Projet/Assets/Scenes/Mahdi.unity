@@ -159,7 +159,7 @@ MonoBehaviour:
   vitesseRecuperee: 0
   faimRecuperee: 15
   vieRecuperee: 15
-  estPreparee: 0
+  estPreparee: 1
 --- !u!54 &7800773
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -359,6 +359,7 @@ MonoBehaviour:
   jaugeDeVie: 100
   jaugeDeFaim: 100
   vitesse: 10
+  objetTenu: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
