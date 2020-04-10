@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour {//gérer l'affichage des dialogues
     public GameObject Choix1;
     public GameObject Choix2;
     public GameObject Choix3;
+    public string nomPanneau;
 
     public Animator animator;//s'occupe des animations pour la boîte de dialogue
 
@@ -26,6 +27,7 @@ public class DialogueManager : MonoBehaviour {//gérer l'affichage des dialogues
         animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;
+        nomPanneau = dialogue.name;
         sentences.Clear();
 
         foreach (string sentence in dialogue.sentences)
@@ -36,6 +38,23 @@ public class DialogueManager : MonoBehaviour {//gérer l'affichage des dialogues
         DisplayNextSentence();
 
     }
+
+    public void StartReaction(Dialogue dialogue)
+	{
+        switch (nomPanneau)
+		{
+            case "Panneau électrique 1":
+                break;
+            case "Panneau électrique 2":
+                break;
+            case "Panneau électrique 3":
+                break;
+            case "Panneau électrique 4":
+                break;
+
+        }
+		
+	}
 
     public void DisplayNextSentence(){//enclenché en cliquant sur Continuer
         if (sentences.Count == 0){

@@ -11,6 +11,9 @@ public class DialogueTrigger : MonoBehaviour{//permet de déclencher un dialogue
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 
-
+    public void TriggerQuestion()
+	{
+        FindObjectOfType<DialogueManager>().StartReaction(dialogue);
+    }
 
 }

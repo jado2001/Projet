@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: "Panneau \xE9lectrique"
+    name: "Panneau \xE9lectrique 3"
     sentences:
     - "Bienvenue dans les panneaux \xE9lectriques du vaisseau Kingfish ! \xCAtes-vous
       pr\xEAts \xE0 apprendre de nouvelles choses ?"
@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 405294847}
   - component: {fileID: 405294846}
   - component: {fileID: 405294845}
+  - component: {fileID: 405294849}
   m_Layer: 5
   m_Name: Choix3
   m_TagString: Untagged
@@ -358,8 +359,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 513054969}
-        m_MethodName: afficherChoix3
+      - m_Target: {fileID: 405294849}
+        m_MethodName: TriggerQuestion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -425,6 +426,21 @@ RectTransform:
   m_AnchoredPosition: {x: -88.3, y: -216.7}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &405294849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405294844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea64a5b884808b4fba478f653aee18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: 
+    sentences: []
 --- !u!1 &424566892
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: "Panneau \xE9lectrique"
+    name: "Panneau \xE9lectrique 4"
     sentences:
     - "Bienvenue dans les panneaux \xE9lectriques du vaisseau Kingfish ! \xCAtes-vous
       pr\xEAts \xE0 apprendre de nouvelles choses ?"
@@ -916,7 +932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: "Panneau \xE9lectrique"
+    name: "Panneau \xE9lectrique 1"
     sentences:
     - "Bienvenue dans les panneaux \xE9lectriques du vaisseau Kingfish ! \xCAtes-vous
       pr\xEAts \xE0 apprendre de nouvelles choses ?\n"
@@ -1429,6 +1445,7 @@ GameObject:
   - component: {fileID: 1085327631}
   - component: {fileID: 1085327630}
   - component: {fileID: 1085327629}
+  - component: {fileID: 1085327632}
   m_Layer: 5
   m_Name: Choix1
   m_TagString: Untagged
@@ -1499,8 +1516,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 513054969}
-        m_MethodName: afficherChoix1
+      - m_Target: {fileID: 1085327632}
+        m_MethodName: TriggerQuestion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1546,6 +1563,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085327627}
   m_CullTransparentMesh: 0
+--- !u!114 &1085327632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085327627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea64a5b884808b4fba478f653aee18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: A
+    sentences:
+    - 
 --- !u!1 &1199180178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,6 +1786,7 @@ MonoBehaviour:
   Choix1: {fileID: 1085327627}
   Choix2: {fileID: 1584546078}
   Choix3: {fileID: 405294844}
+  nomPanneau: 
   animator: {fileID: 1199180182}
 --- !u!4 &1355504634
 Transform:
@@ -1952,7 +1986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: "Panneau \xE9lectrique"
+    name: "Panneau \xE9lectrique 2"
     sentences:
     - "Bienvenue dans les panneaux \xE9lectriques du vaisseau Kingfish ! \xCAtes-vous
       pr\xEAts \xE0 apprendre de nouvelles choses ?"
@@ -2171,6 +2205,7 @@ GameObject:
   - component: {fileID: 1584546082}
   - component: {fileID: 1584546081}
   - component: {fileID: 1584546080}
+  - component: {fileID: 1584546083}
   m_Layer: 5
   m_Name: Choix2
   m_TagString: Untagged
@@ -2241,8 +2276,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 513054969}
-        m_MethodName: afficherChoix2
+      - m_Target: {fileID: 1584546083}
+        m_MethodName: TriggerQuestion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2288,6 +2323,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584546078}
   m_CullTransparentMesh: 0
+--- !u!114 &1584546083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584546078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea64a5b884808b4fba478f653aee18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: B
+    sentences: []
 --- !u!1 &1692663105
 GameObject:
   m_ObjectHideFlags: 0
