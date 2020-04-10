@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour {
+public class DialogueManager : MonoBehaviour {//gérer l'affichage des dialogues
 
     public Text nameText;
     public Text dialogueText;
+    public GameObject Choix1;
+    public GameObject Choix2;
+    public GameObject Choix3;
 
-    public Animator animator;
+    public Animator animator;//s'occupe des animations pour la boîte de dialogue
 
-    private Queue<string> sentences;//FIFO, first in, first out
+    private Queue<string> sentences;//FIFO, contient les phrases du dialogue
 
     
     void Start()
@@ -18,8 +21,8 @@ public class DialogueManager : MonoBehaviour {
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
-    {
+  
+    public void StartDialogue(Dialogue dialogue){
         animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;
@@ -27,17 +30,15 @@ public class DialogueManager : MonoBehaviour {
 
         foreach (string sentence in dialogue.sentences)
         {
-            sentences.Enqueue(sentence);
+            sentences.Enqueue(sentence);//on ajoute les phrases à la liste
         }
 
         DisplayNextSentence();
 
     }
 
-    public void DisplayNextSentence()
-    {
-        if (sentences.Count == 0)
-        {
+    public void DisplayNextSentence(){//enclenché en cliquant sur Continuer
+        if (sentences.Count == 0){
             EndDialogue();
             return;
         }
@@ -47,18 +48,16 @@ public class DialogueManager : MonoBehaviour {
         StartCoroutine(TypeSentence(sentence));
     }
 
-    IEnumerator TypeSentence(string sentence)
-    {
+    IEnumerator TypeSentence(string sentence){//Coroutine
         dialogueText.text = "";
-        foreach (char letter in sentence.ToCharArray())
+        foreach (char letter in sentence.ToCharArray())//.ToCharArray convertit la phrase en un array de char
         {
             dialogueText.text += letter;//on ajoute la lettre à la phrase
             yield return null;//attendre 1 frame avant d'ajouter la prochaine lettre
         }
     }
 
-    void EndDialogue()
-    {
+    void EndDialogue(){
         animator.SetBool("IsOpen", false);
     }
 }
