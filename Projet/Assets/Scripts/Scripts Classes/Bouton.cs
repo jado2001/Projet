@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Bouton : Objet
 {
-    public Porte porte;
+    public List<Porte> listePorte;
     override
     public Transform interaction(GameObject destination) {
-        porte.ouvrir();
+        foreach (Porte porte in listePorte)
+        {
+            porte.ouvrir();
+        }
         return null;
     }
 
