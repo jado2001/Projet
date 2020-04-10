@@ -257,9 +257,9 @@ MonoBehaviour:
       \xE0 l'autre c\xF4t\xE9 du circuit en d\xE9pla\xE7ant l'interrupteur. Les charges
       en surplus sur une des armatures iront alors rejoindre l'autre armature jusqu'\xE0
       ce que chaque armature redevienne neutre."
-    - "C'est tout pour ce panneau! Si vous voulez continuez \xE0 apprendre de nouvelles
-      choses sur les circuits \xE9lectriques, continuez \xE0 explorer pour trouver
-      les autres panneaux !"
+    - "Lequel des facteurs suivants n'a pas d'influence  sur la capacit\xE9 d'un
+      condensateur ?\nA)Le mat\xE9riau dont est fait le condensateur\nB)La distance
+      entre ses armatures\nC)Le type de di\xE9lectrique entre ses armatures"
 --- !u!114 &207880826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &405294845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -88.3, y: -216.7}
+  m_AnchoredPosition: {x: -73, y: -208.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &405294849
@@ -439,8 +439,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: 
-    sentences: []
+    name: C
+    sentences:
+    - 
 --- !u!1 &424566892
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,8 +553,7 @@ MonoBehaviour:
     sentences:
     - "Bienvenue dans les panneaux \xE9lectriques du vaisseau Kingfish ! \xCAtes-vous
       pr\xEAts \xE0 apprendre de nouvelles choses ?"
-    - Dans ce panneau, nous verrons les lois de Kirchhoff et ce qui arrive lorsqu'on
-      a 2 piles dans un circuit !
+    - Dans ce panneau, nous verrons les lois de Kirchhoff !
     - "La premi\xE8re loi de Kirchhoff est la loi des noeuds. Selon cette loi, tout
       le courant qui entre dans un noeud doit n\xE9cessairement en ressortir. Autrement
       dit,\n \u03A3 I(entrant)=\u03A3 I(sortant).\n"
@@ -568,12 +568,19 @@ MonoBehaviour:
       \xEAtre au m\xEAme potentiel. Cela signifie que la somme des hausses et des
       baisses de potentiel qu'on a observ\xE9es doit \xEAtre \xE9gale \xE0 0. Autrement
       dit, \u03A3 \u0394V =0 .\n"
-    - "Appliquons cette loi \xE0 la maille partant de la borne positive de la pile
-      inf\xE9rieure gauche et qui passe par R1 pour revenir \xE0 la borne n\xE9gative
-      de la m\xEAme pile. On obtient alors \u03B5 (potentiel de la pile) - R1 * I(3)
-      =0"
-    - 
-    - 
+    - "Lorsqu'on traverse un r\xE9sisteur de r\xE9sistance R dans le sens du courant
+      I qui y circule, on perd du potentiel: \u0394V = -RI. Si on traverse dans le
+      sens contraire du courant, on obtient plut\xF4t \n\u0394V = +RI"
+    - "Lorsqu'on traverse une pile d'\xE9lectromotance \u0190 en allant de sa borne
+      n\xE9gative \xE0 sa borne positive, on gagne du potentiel: \u0394V = +RI. Si
+      on va plut\xF4t de la borne positive \xE0 la borne n\xE9gative, on obtient
+      plut\xF4t  \u0394V = -RI."
+    - "Par exemple, si on appliquait la loi des mailles \xE0 la maille du triangle
+      sup\xE9rieur gauche du circuit en partant de la pile de gauche (on va la nommer
+      \u01901), on obtient \u01901-R1*I1-R3*I3=0."
+    - "Sachant que \u01901 =12 V, \u01902=5 V, R1= 1 \u03A9, R2=2 \u03A9, et R3=9
+      \u03A9. D\xE9terminez le courant (grandeur et orientation) dnas le r\xE9sisteur
+      2.\nA) 2 A vers le haut  B) 2 A vers le bas   C) 3 A vers le bas"
 --- !u!114 &424566896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,7 +654,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 89, y: -79}
+  m_AnchoredPosition: {x: 89, y: -86}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505174347
@@ -944,7 +951,9 @@ MonoBehaviour:
     - "De plus, puisqu'ils font partie de la m\xEAme branche, cela implique qu'ils
       sont travers\xE9s par le m\xEAme courant. Par exemple, les deux r\xE9sistances
       se trouvant sur la branche du bas sont en s\xE9rie."
-    - Passons maintenant aux instruments de mesure !
+    - "Pour calculer la r\xE9sistance \xE9quivalente de r\xE9sistances en s\xE9rie,
+      il faut simplement faire R\xE9q = R1 + R2 + ...  + Rn. Passons maintenant aux
+      instruments de mesure !"
     - "Lorsqu'on veut mesurer l'intensit\xE9 du courant dans une branche, il suffit
       simplement d'installer en s\xE9rie un amp\xE8rem\xE8tre (A) sur cette m\xEAme
       branche."
@@ -952,11 +961,12 @@ MonoBehaviour:
       circuit, il suffit d'installer un voltm\xE8tre (V) en parall\xE8le sur ces
       deux points du circuit.\n"
     - "Par exemple, on a mis un voltm\xE8tre en parall\xE8le sur les bornes de la
-      r\xE9sitance de gauche pour mesurer la diff\xE9rence de potentiel \xE0 ses
+      r\xE9sistance de gauche pour mesurer la diff\xE9rence de potentiel \xE0 ses
       bornes.\n"
-    - "C'est tout pour ce panneau! Si vous n'\xEAtes pas s\xFBr de comprendre ce
-      que sont deux \xE9l\xE9ments en parall\xE8le, trouvez le panneau correspondant
-      dans le reste du vaisseau  !\n"
+    - "Si la tension aux bornes de la pile est de 6 V , l'intensit\xE9 du courant
+      qui circule dans le cicuit est de 2 A et toutes les r\xE9sisteurs poss\xE8dent
+      la m\xEAme r\xE9sistance, quelle est la r\xE9sistance d'un r\xE9sisteur ? *Loi
+      d'Ohm: \u0394V =RI\nA) 4 \u03A9   B) 5 \u03A9  C)  3 \u03A9\n"
 --- !u!114 &599655576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,7 +1400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: -13}
+  m_AnchoredPosition: {x: -13, y: 9}
   m_SizeDelta: {x: 300, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1084401092
@@ -1452,7 +1462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1085327628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1470,7 +1480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -88.2, y: -179.5}
+  m_AnchoredPosition: {x: -73, y: -171.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085327629
@@ -1617,8 +1627,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -141}
-  m_SizeDelta: {x: 350, y: 200}
+  m_AnchoredPosition: {x: 14, y: -126}
+  m_SizeDelta: {x: 350, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1199180180
 MonoBehaviour:
@@ -1787,6 +1797,7 @@ MonoBehaviour:
   Choix2: {fileID: 1584546078}
   Choix3: {fileID: 405294844}
   nomPanneau: 
+  compteur: 0
   animator: {fileID: 1199180182}
 --- !u!4 &1355504634
 Transform:
@@ -2000,9 +2011,13 @@ MonoBehaviour:
       Mais attention! Si un autre \xE9l\xE9ment du circuit avait \xE9t\xE9 quelque
       part dans le chemin qui relie une des bornes de la premi\xE8re r\xE9sistance
       \xE0 celle de la deuxi\xE8me, elles ne seraient plus en parall\xE8le."
-    - "C'est tout pour ce panneau! Si vous voulez continuez \xE0 apprendre de nouvelles
-      choses sur les circuits \xE9lectriques, continuez \xE0 explorer pour trouver
-      les autres panneaux !"
+    - "Pour calculer la r\xE9sistance \xE9quivalente de r\xE9sistances en parall\xE8le,
+      il faut simplement faire 1/R\xE9q = 1/R1 + 1/R2 + ...  + 1/Rn. "
+    - "Si la tension aux bornes de la pile est de 8 V , l'intensit\xE9 du courant
+      qui circule dans la branche de la pile est de 2 A et que le r\xE9sisteur de
+      gauche poss\xE8de une r\xE9sistance de 5  \u03A9 , quelle est la r\xE9sistance
+      de l'autre r\xE9sisteur ? *Loi d'Ohm: \u0394V =RI\nA) 15 \u03A9   B) 20 \u03A9 
+      C)  10 \u03A9"
 --- !u!114 &1490118714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2212,7 +2227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1584546079
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2230,7 +2245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 73.811584, y: -178.8}
+  m_AnchoredPosition: {x: 101, y: -171}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1584546080
@@ -2337,7 +2352,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: B
-    sentences: []
+    sentences:
+    - 
 --- !u!1 &1692663105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,7 +2388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -83, y: 71.7}
+  m_AnchoredPosition: {x: -83, y: 97}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1692663107
