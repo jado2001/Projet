@@ -7,7 +7,7 @@ public class ActionJoueur : MonoBehaviour
     public Camera camera;
     public Transform objetTenu = null;
     public Transform destination;
-    public float forceDeLancer, tailleRamasse, layerObjet, vie = 100, faim = 100, vitesse = 100;
+    public float forceDeLancer, tailleRamasse, layerObjet;
     private Vector3 positionObjet = new Vector3(0f,0f,0f);
     //Liste de tous les scripts présents dans le jeu
 
@@ -15,7 +15,7 @@ public class ActionJoueur : MonoBehaviour
 /// IL FAUT RÉGLER mANGER PENDANT QU'ON TIENT UN OBJET
 /// </summary>
     //Méthode Start
-    void Start()
+    void Start() 
     {
     }
 
@@ -54,7 +54,7 @@ public class ActionJoueur : MonoBehaviour
             {
                 lacher();
             }
-            objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
+                objetTenu = script.interaction(destination.gameObject); // Prendre/Intéragir avec l'objet
             if (objetTenu != null)
             {
                 tailleRamasse = script.tailleRamasse; //Prendre la taille de l'objet
