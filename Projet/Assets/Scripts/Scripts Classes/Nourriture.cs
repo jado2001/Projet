@@ -6,6 +6,7 @@ public class Nourriture : MiniObjet
 {
     public float vitesseRecuperee, faimRecuperee, vieRecuperee;
     public bool estPreparee;
+    public bool estCoupe;
 
     override
     public Transform interaction(GameObject destination)
