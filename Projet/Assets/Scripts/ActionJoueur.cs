@@ -28,7 +28,7 @@ public class ActionJoueur : MonoBehaviour
         }
         else if (Input.GetButtonDown("Fire2"))
         {
-            lancer();
+            utilisation();
         }
     }
 
@@ -117,5 +117,15 @@ public class ActionJoueur : MonoBehaviour
         destination.DetachChildren();
         objetTenu.gameObject.layer = (int)layerObjet;
         objetTenu = null;
+    }
+
+    private void utilisation()
+    {
+        //Vérifier si on tien un objet
+        if (objetTenu!=null)
+        {
+            Objet script = trouverInteraction(objetTenu); //Prendre son script
+            script.utiliser();
+        }
     }
 }
