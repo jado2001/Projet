@@ -8,6 +8,7 @@ public class Lavabo : Objet
     override
         public void utiliser()
     {
+<<<<<<< HEAD
     }
     override
     public Transform interaction(GameObject destination)
@@ -16,3 +17,14 @@ public class Lavabo : Objet
     }
 
 }
+=======
+        
+    }
+    override
+    public Transform interaction(GameObject destination) 
+    {
+        return null;
+    }
+    
+}
+>>>>>>> 76aa6e9fabc70717c8fc327ee1161f393362ea79
