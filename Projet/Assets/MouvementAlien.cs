@@ -11,29 +11,12 @@ public class MouvementAlien : MonoBehaviour
 
     public NavMeshAgent agent;
 
+    public float rotation;
+
     // Update is called once per frame
     void Update()
     {
-<<<<<<< Updated upstream
-        /**if (Input.GetButtonDown("Fire1")) 
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                //Move alien
-                agent.SetDestination(hit.point);
-            }
-        }
-    **/
-        RaycastHit hit;
-        Vector3 vecteurDirection = joueur.position - transform.position;
-        if (Physics.Raycast(transform.position,vecteurDirection/vecteurDirection.magnitude,out hit) && hit.transform.gameObject.layer == joueur.gameObject.layer)
-        {
-            agent.SetDestination(joueur.position);
-            Debug.Log(hit.transform.name);
-=======
        
         Debug.DrawRay(transform.position, transform.forward*100, Color.green);
         RaycastHit hit;
@@ -64,7 +47,7 @@ public class MouvementAlien : MonoBehaviour
 
             
             
->>>>>>> Stashed changes
+
         }
         
     }
