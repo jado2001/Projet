@@ -14,14 +14,13 @@ public class DialogueManager : MonoBehaviour
     public GameObject Choix1;/// Premier bouton qu'on peut utiliser pour donner une réponse
     public GameObject Choix2;/// Deuxième bouton qu'on peut utiliser pour donner une réponse
     public GameObject Choix3;/// Troisième bouton qu'on peut utiliser pour donner une réponse
-    public GameObject detecteur;
-    public GameObject retour;
+    public GameObject retour;///objet qui permet de revenir à la scène du vaisseau quand le mini-jeu est fini
     public string nomPanneau;/// nom du panneau avec lequel on interagit
     public int compteur = 0; /// compteur qui sert à gérer l'affichage des boutons de choix de réponses
 
     public Animator animator;//s'occupe des animations pour la boîte de dialogue
 
-    public Queue<string> sentences;//File (FIFO) qui contient les phrases du dialogue
+    private Queue<string> sentences;//File (FIFO) qui contient les phrases du dialogue
 
     /// <summary>
 	/// Sert à créer la file de phrases lorsque le script est appelé

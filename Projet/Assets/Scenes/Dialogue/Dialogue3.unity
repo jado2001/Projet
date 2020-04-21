@@ -17609,7 +17609,7 @@ MonoBehaviour:
     - "Bienvenue dans les panneaux \xE9lectriques du vaisseau Kingfish ! \xCAtes-vous
       pr\xEAts \xE0 apprendre de nouvelles choses ?"
     - Dans ce panneau, nous verrons les circuits RC et les condensateurs !
-    - "L'\xE9l\xE9ment du circuit qui est compl\xE8tement \xE0 gauche est un condensateur.
+    - "L'\xE9l\xE9ment du circuit qui est juste \xE0 droite de la pile est un condensateur.
       Un condensateur est un dispositif qui permet d'accumuler des charges. Dans
       la vie r\xE9elle, on s'en sert notamment pour les flash d'appareil photo et
       le d\xE9fibrilateur cardiaque.\n"
