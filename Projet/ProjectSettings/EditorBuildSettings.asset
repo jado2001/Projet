@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Vaisseau.unity
+    guid: eed36dba6391bf545b651aad8cece4e4
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/Dialogue.unity
+    guid: f8439d37cbe340d41a36ae025f8bc9a8
   m_configObjects: {}

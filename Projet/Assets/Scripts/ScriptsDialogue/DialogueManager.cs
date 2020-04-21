@@ -14,12 +14,14 @@ public class DialogueManager : MonoBehaviour
     public GameObject Choix1;/// Premier bouton qu'on peut utiliser pour donner une réponse
     public GameObject Choix2;/// Deuxième bouton qu'on peut utiliser pour donner une réponse
     public GameObject Choix3;/// Troisième bouton qu'on peut utiliser pour donner une réponse
+    public GameObject detecteur;
+    public GameObject retour;
     public string nomPanneau;/// nom du panneau avec lequel on interagit
     public int compteur = 0; /// compteur qui sert à gérer l'affichage des boutons de choix de réponses
 
     public Animator animator;//s'occupe des animations pour la boîte de dialogue
 
-    private Queue<string> sentences;//File (FIFO) qui contient les phrases du dialogue
+    public Queue<string> sentences;//File (FIFO) qui contient les phrases du dialogue
 
     /// <summary>
 	/// Sert à créer la file de phrases lorsque le script est appelé
@@ -96,7 +98,7 @@ public class DialogueManager : MonoBehaviour
             Choix1.SetActive(true);
             Choix2.SetActive(true);
             Choix3.SetActive(true);
-
+            //detecteur.GetComponent<detecterTouches>().verifierReponse();
         }
         else if (sentences.Count == 0)
         {
@@ -131,5 +133,7 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
+        retour.GetComponent<SceneSwitch>().OnTriggerReturn();
+
     }
 }

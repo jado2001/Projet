@@ -39,7 +39,7 @@ public class ActionJoueur : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskSansInteraction))
         {
-            
+            Debug.DrawRay(camera.transform.position, camera.transform.forward);
             //Sauvegarde
             Transform sauvegarde = null;
             positionObjet = hit.transform.position;
