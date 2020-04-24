@@ -26,7 +26,7 @@ public class MouvementAlien : MonoBehaviour
         if (Physics.Raycast(transform.position,vecteurDirection/vecteurDirection.magnitude,out hit) && hit.transform.gameObject.layer == joueur.gameObject.layer) //Si le ray entre l'alien et le joueur touche qqch et que se qqch est le joueur
         {
             agent.SetDestination(joueur.position); //Dit à l'alien d'aller à la position du joueur
-
+            porteActive = null; 
         }
         else if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.layer == 12)//Si le ray partant en avant du joueur touche une porte
         {
