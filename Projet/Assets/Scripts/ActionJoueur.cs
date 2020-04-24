@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
+
 public class ActionJoueur : MonoBehaviour
 {
     public float range;
@@ -22,6 +23,7 @@ public class ActionJoueur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+   
         if (Input.GetButtonDown("Fire1"))
         {
             Interagir();
