@@ -22,11 +22,15 @@ public class ActionJoueur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown("e"))
         {
             Interagir();
         }
-        else if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire1"))
+        {
+            utilisation();
+        }
+        if (Input.GetButtonDown("Fire2"))
         {
             lancer();
         }
@@ -49,7 +53,9 @@ public class ActionJoueur : MonoBehaviour
                 sauvegarde = objetTenu;
             }
             //Trouver le script 
-            Objet script = trouverInteraction(hit.transform);
+            Objet script = null;
+            script= trouverInteraction(hit.transform, script);
+
             if (objetTenu != null)
             {
                 lacher();
@@ -73,9 +79,9 @@ public class ActionJoueur : MonoBehaviour
             //Vérifier si un nouvel objet est Tenu
             if (objetTenu == null && sauvegarde!=null)
             {
-                script = trouverInteraction(sauvegarde);
+                script = trouverInteraction(sauvegarde, script);
                 objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
-            } else
+            } else if (sauvegarde!=null)
             {
                 sauvegarde.position = positionObjet; //Déplacer l'objet tenu;
             }
@@ -83,11 +89,11 @@ public class ActionJoueur : MonoBehaviour
         }
     }
 
-    Objet trouverInteraction(Transform hit)
+    private T trouverInteraction<T>(Transform hit, T objetType) where T : MonoBehaviour
     {
         //Aller a travers la liste des scripts de l'objet pour utiliser celui qui possede interaction
-        var listeComponents = hit.gameObject.GetComponents(typeof(Objet));
-        foreach (Objet script in listeComponents)
+        var listeComponents = hit.gameObject.GetComponents(typeof(T));
+        foreach (T script in listeComponents)
         {
             try
             {
@@ -103,9 +109,11 @@ public class ActionJoueur : MonoBehaviour
     void lancer()
     {
 
-        objetTenu.gameObject.GetComponent<Rigidbody>().isKinematic = false; //Redonner des physiques a l'objet
         objetTenu.localRotation = new Quaternion(1, 2, 3, 0);
         objetTenu.gameObject.GetComponent<Rigidbody>().AddForce(destination.forward * forceDeLancer);
+        MiniObjet script = null;
+        script = trouverInteraction(objetTenu.transform, script);
+        script.lancer();
         lacher();
 
     }
@@ -117,5 +125,16 @@ public class ActionJoueur : MonoBehaviour
         destination.DetachChildren();
         objetTenu.gameObject.layer = (int)layerObjet;
         objetTenu = null;
+    }
+
+    private void utilisation()
+    {
+        //Vérifier si on tien un objet
+        if (objetTenu!=null)
+        {
+            Objet script = null;
+            script = trouverInteraction(objetTenu, script);  //Trouver son script
+            script.utiliser(); //Appeler sa méthode utiliser
+        }
     }
 }

@@ -20,6 +20,7 @@ public class Nourriture : MiniObjet
             transform.parent = destination.transform;
             transform.localRotation = new Quaternion(0, 0, 0, 0);
             gameObject.layer = 11;
+            gameObject.tag = "Untagged";
             return transform;
         }
         else
@@ -40,6 +41,12 @@ public class Nourriture : MiniObjet
     override
     public void utiliser()
     {
+    }
+
+    override
+    public void lancer()
+    {
+        transform.gameObject.tag = "NourritureFrigo"; 
     }
 
 }

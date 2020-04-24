@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniObjet: Objet
 {
-
+    public bool estCoupe;
     override
     public Transform interaction(GameObject destination)
     {
@@ -20,6 +20,11 @@ public class MiniObjet: Objet
     }
     override
     public void utiliser()
+    {
+
+    }
+
+    public virtual void lancer()
     {
 
     }
