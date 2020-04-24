@@ -96,7 +96,7 @@ public class ActionJoueur : MonoBehaviour
         foreach (T script in listeComponents)
         {
             try
-            {
+            {   
                 return script;
             }
             catch (Exception e)
