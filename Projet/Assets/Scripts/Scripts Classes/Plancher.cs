@@ -17,15 +17,7 @@ public class Plancher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(executeAfterTime(5));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-        //float temps2;
+        declencherCoroutine();
     }
 
     /// <summary>
@@ -35,6 +27,14 @@ public class Plancher : MonoBehaviour
 	{
         GetComponent<Renderer>().material = matSale;
 	}
+
+    /// <summary>
+	/// sert à déclencher la coroutine qui rend les tuiles sales
+	/// </summary>
+    public void declencherCoroutine()
+	{
+        StartCoroutine(executeAfterTime(5));
+    }
 
     /// <summary>
 	/// sert à exécuter des actions après un certain temps
