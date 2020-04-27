@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Balai : MiniObjet
 {
-    
+    public GameObject tuileActive;
 
     override
     public Transform interaction(GameObject destination)
@@ -26,18 +26,14 @@ public class Balai : MiniObjet
     override
     public void utiliser()
     {
+        RaycastHit hit; //Création d'un hit pour le Raycast
+        if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.layer == 9)
+        {
+            tuileActive = hit.transform.gameObject;
+            tuileActive.GetComponent<Plancher>().nettoyerTuile();
+        }
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
