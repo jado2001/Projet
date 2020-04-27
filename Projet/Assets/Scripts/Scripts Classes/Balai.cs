@@ -6,6 +6,7 @@ public class Balai : MiniObjet
 {
     public GameObject tuileActive;
     public Material matPropre;///material à appliquer sur les tuiles quand elles sont sales
+    public float range;
 
     override
     public Transform interaction(GameObject destination)
@@ -28,8 +29,10 @@ public class Balai : MiniObjet
     public void utiliser()
     {
         RaycastHit hit; //Création d'un hit pour le Raycast
-        if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.layer == 9)
+        Debug.DrawRay(transform.position, transform.forward * 100, Color.green);
+        if (Physics.Raycast(transform.position, -transform.forward, out hit, range) && hit.transform.gameObject.layer == 9)
         {
+            
             tuileActive = hit.transform.gameObject;
             nettoyerTuile(tuileActive);
         }

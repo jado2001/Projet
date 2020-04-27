@@ -17,7 +17,7 @@ public class Plancher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(executeAfterTime(10));
+        StartCoroutine(executeAfterTime(5));
     }
 
     // Update is called once per frame
