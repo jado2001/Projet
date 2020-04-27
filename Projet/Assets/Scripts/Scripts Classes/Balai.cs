@@ -5,6 +5,7 @@ using UnityEngine;
 public class Balai : MiniObjet
 {
     public GameObject tuileActive;
+    public Material matPropre;///material à appliquer sur les tuiles quand elles sont sales
 
     override
     public Transform interaction(GameObject destination)
@@ -30,10 +31,15 @@ public class Balai : MiniObjet
         if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.layer == 9)
         {
             tuileActive = hit.transform.gameObject;
-            tuileActive.GetComponent<Plancher>().nettoyerTuile();
+            nettoyerTuile(tuileActive);
         }
 
     }
 
-   
+    public void nettoyerTuile(GameObject tuileActive)
+    {
+        tuileActive.GetComponent<Renderer>().material = matPropre;
+
+    }
+
 }

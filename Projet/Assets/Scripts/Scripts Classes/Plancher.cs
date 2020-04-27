@@ -10,8 +10,9 @@ public class Plancher : MonoBehaviour
 
     public bool estSale = false;///sert à vérifier si la tuile est sale
     public int propreter = 20;///valeur de propreté de la tuile
-    public Material matSale;///materail à appliquer sur les tuiles quand elles sont sales
-    public GameObject tuileActive;
+    public Material matSale;///material à appliquer sur les tuiles quand elles sont sales
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +47,5 @@ public class Plancher : MonoBehaviour
         salirTuile();
 	}
 
-    public void nettoyerTuile()
-	{
-
-	}
+    
 }
