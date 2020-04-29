@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
+using Random = UnityEngine.Random;
+
 public class Alien : Objet
 {
     public Transform joueur;
@@ -17,6 +19,10 @@ public class Alien : Objet
     public Porte porteActive = null;
 
     private bool isCoroutineExecuting = false;
+
+    private float tempsRestant;
+
+    private float tempsIdle;
 
     override
     public Transform interaction(GameObject destination)
@@ -36,9 +42,9 @@ public class Alien : Objet
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        // Debug.Log(porteActive);
+         
 
         Debug.DrawRay(transform.position, transform.forward * 100, Color.green);
         RaycastHit hit; //Création d'un hit pour le Raycast
@@ -56,23 +62,29 @@ public class Alien : Objet
             Vector3 vecteurDifference = vecteurPorte;
             vecteurDifference.Normalize();
             agent.SetDestination((porteActive.transform.position) + (vecteurDifference)); //Set la destination de l'alien à la porteActive
-            transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);
-            
+            transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);            
+
         }
-        else if (porteActive != null && (transform.position - porteActive.gameObject.transform.position).magnitude <= 3)
-        {
-            transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);
-            Debug.Log("penis");
-            StartCoroutine(executeAfterTime(2));
-        }
+        
         else if (agent.velocity.magnitude == 0 && porteActive == null)//si l'alien ne bouge pas et qu'il n'a pas de porteActive
         {
 
             rotation = rotation + .5f; //Change la valeur de la rotation
             transform.localRotation = Quaternion.Euler(0f, rotation, 0f);//Fait tourner l'alien sur lui-même
-
+            tempsIdle += Time.deltaTime; //incrémente le temps du temps que le frame a pris
+            if (tempsIdle >= 10)//si sa fait 10 secondes que l'alien a pas bouger
+            {
+                agent.SetDestination(RandomNavmeshLocation(20f)); //set la destination de l'alien un point aléatoire de 20 de rayon                
+                tempsIdle = 0;//reset le tempsIdle
+            }
         }
-        
+       if (porteActive != null && (transform.position - porteActive.gameObject.transform.position).magnitude <= 3) //si la porteActive est a moins de 3
+        {
+            
+            transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);//regarde la porte
+            attaquerPorte(1);//attaque la porte
+        }
+
     }
     private T trouverInteraction<T>(Transform hit, T objetType) where T : MonoBehaviour
     {
@@ -90,19 +102,29 @@ public class Alien : Objet
         }
         return null;
     }
-
-    public IEnumerator executeAfterTime(float time)
+    public void attaquerPorte (float time)
     {
-        if (isCoroutineExecuting)
-            yield break;
-
-        isCoroutineExecuting = true;
-
-        yield return new WaitForSeconds(time);
-        if (porteActive != null)
+        if (tempsRestant >= time) //si sa fait plus que "time" secondes
         {
+            porteActive.durabilitee--;//réduit la durabilité de la porte
             porteActive.durabilitee--;
+            tempsRestant = 0; //reset le tempsRestants
         }
-        isCoroutineExecuting = false;
+        else
+        {
+            tempsRestant += Time.deltaTime;//ajout le temps de la frame
+        }
+    }
+    public Vector3 RandomNavmeshLocation(float radius)//trouve un point aléatoire de "radius" de rayon
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * radius; //vecteur aléatoire
+        randomDirection += transform.position;//vecteur aléatoire à partir de l'alien
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
     }
 }

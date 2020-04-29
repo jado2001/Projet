@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class Porte : Objet
@@ -11,6 +12,7 @@ public class Porte : Objet
     public bool ouvert, estEnMouvement;
     public int durabilitee = 10;
     public GameObject porteDetruite;
+
     override
       public Transform interaction(GameObject destination)
     {
@@ -62,7 +64,7 @@ public class Porte : Objet
     void remplacerPorte()
     {
         
-        GameObject PorteDetruite = Instantiate(porteDetruite, transform.position, Quaternion.identity) as GameObject;
+       Instantiate(porteDetruite, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
