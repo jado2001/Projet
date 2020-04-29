@@ -16,6 +16,8 @@ public class Alien : Objet
 
     public Porte porteActive = null;
 
+    private bool isCoroutineExecuting = false;
+
     override
     public Transform interaction(GameObject destination)
     {
@@ -36,7 +38,7 @@ public class Alien : Objet
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log(porteActive);
+        // Debug.Log(porteActive);
 
         Debug.DrawRay(transform.position, transform.forward * 100, Color.green);
         RaycastHit hit; //Création d'un hit pour le Raycast
@@ -46,20 +48,23 @@ public class Alien : Objet
             agent.SetDestination(joueur.position); //Dit à l'alien d'aller à la position du joueur
             porteActive = null;
         }
-        else if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.layer == 12)//Si le ray partant en avant du joueur touche une porte
+        else if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.layer == 12)//Si le ray partant en avant de l'alien touche une porte
         {
 
             porteActive = trouverInteraction(hit.transform,porteActive);//Set la porte qu'il regarde comme la porteActive (l'objet au hit) 
             Vector3 vecteurPorte = (transform.position - porteActive.gameObject.transform.position); //Vecteur entre la porte et l'alien
-            vecteurPorte.Normalize();
-            agent.SetDestination((porteActive.transform.position) + (vecteurPorte)); //Set la destination de l'alien à la porteActive
-            rotation = transform.rotation.y;//S'assure que la valeur de la rotation est la même que la rotation de l'alien
-            if ((transform.position - porteActive.gameObject.transform.position).magnitude <= 3)
-            {
-                Debug.Log("penis");
-                porteActive.durabilitee--;
-            }
-        }        
+            Vector3 vecteurDifference = vecteurPorte;
+            vecteurDifference.Normalize();
+            agent.SetDestination((porteActive.transform.position) + (vecteurDifference)); //Set la destination de l'alien à la porteActive
+            transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);
+            
+        }
+        else if (porteActive != null && (transform.position - porteActive.gameObject.transform.position).magnitude <= 3)
+        {
+            transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);
+            Debug.Log("penis");
+            StartCoroutine(executeAfterTime(2));
+        }
         else if (agent.velocity.magnitude == 0 && porteActive == null)//si l'alien ne bouge pas et qu'il n'a pas de porteActive
         {
 
@@ -84,5 +89,20 @@ public class Alien : Objet
             }
         }
         return null;
+    }
+
+    public IEnumerator executeAfterTime(float time)
+    {
+        if (isCoroutineExecuting)
+            yield break;
+
+        isCoroutineExecuting = true;
+
+        yield return new WaitForSeconds(time);
+        if (porteActive != null)
+        {
+            porteActive.durabilitee--;
+        }
+        isCoroutineExecuting = false;
     }
 }

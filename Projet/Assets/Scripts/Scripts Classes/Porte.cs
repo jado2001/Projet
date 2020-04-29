@@ -10,6 +10,7 @@ public class Porte : Objet
     public Vector3 startPos;
     public bool ouvert, estEnMouvement;
     public int durabilitee = 10;
+    public GameObject porteDetruite;
     override
       public Transform interaction(GameObject destination)
     {
@@ -28,7 +29,8 @@ public class Porte : Objet
     {
         if (durabilitee <= 0)
         {
-            Destroy(gameObject);
+            
+            remplacerPorte();
         }
         if (estEnMouvement)
         {
@@ -55,6 +57,13 @@ public class Porte : Objet
         transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
         distanceTravelled += Vector3.Distance(transform.position, lastPosition);
         lastPosition = transform.position;
+    }
+
+    void remplacerPorte()
+    {
+        
+        GameObject PorteDetruite = Instantiate(porteDetruite, transform.position, Quaternion.identity) as GameObject;
+        Destroy(gameObject);
     }
 
 }
