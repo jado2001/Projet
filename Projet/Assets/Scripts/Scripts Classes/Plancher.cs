@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Classe des tuiles du plancher du vaisseau
@@ -9,8 +10,8 @@ public class Plancher : MonoBehaviour
 {
 
     public bool estSale = false;///sert à vérifier si la tuile est sale
-    public int propreter = 20;///valeur de propreté de la tuile
     public Material matSale;///material à appliquer sur les tuiles quand elles sont sales
+    public GameObject alien; /// <summary>modèle de l'alien qui sert de base pour en créer d'autres quand la tuile est assez sale
 
 
 
@@ -26,6 +27,8 @@ public class Plancher : MonoBehaviour
     public void changerMat()
 	{
         GetComponent<Renderer>().material = matSale;
+        estSale = true;
+        StartCoroutine(apparaitreAlien(Random.Range(120, 600)));
 	}
 
     /// <summary>
@@ -33,8 +36,7 @@ public class Plancher : MonoBehaviour
 	/// </summary>
     public void declencherCoroutine()
 	{
-        StartCoroutine(salirTuile(5));
-        
+        StartCoroutine(salirTuile(Random.Range(120, 600)));
     }
 
     /// <summary>
@@ -59,8 +61,22 @@ public class Plancher : MonoBehaviour
         spawnAlien();
     }
 
+    /// <summary>
+	/// crée un nouveau alien
+	/// </summary>
     public void spawnAlien()
-	{
+    {
+		if (estSale) { 
+        GameObject nouveauAlien = Instantiate(alien, transform.position, Quaternion.identity) as GameObject;
+        }
+    }
 
-	}
+    /// <summary>
+	/// setter du boolean estSale
+	/// </summary>
+	/// <param name="estSale"></param> la valeur changée du boolean
+    public void setEstSale(bool estSale) {
+        this.estSale = estSale;
+    }
+
 }

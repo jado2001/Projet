@@ -50,6 +50,7 @@ public class Balai : MiniObjet
     {
         tuileActive.GetComponent<Renderer>().material = matPropre;
         tuileActive.GetComponent<Plancher>().declencherCoroutine();
+        tuileActive.GetComponent<Plancher>().setEstSale(false);
 
     }
 
