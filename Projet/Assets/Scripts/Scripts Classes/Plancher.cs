@@ -23,7 +23,7 @@ public class Plancher : MonoBehaviour
     /// <summary>
 	/// sert à changer le material de la tuile pour qu'elle est l'air sale
 	/// </summary>
-    public void salirTuile()
+    public void changerMat()
 	{
         GetComponent<Renderer>().material = matSale;
 	}
@@ -33,19 +33,34 @@ public class Plancher : MonoBehaviour
 	/// </summary>
     public void declencherCoroutine()
 	{
-        StartCoroutine(executeAfterTime(5));
+        StartCoroutine(salirTuile(5));
+        
     }
 
     /// <summary>
-	/// sert à exécuter des actions après un certain temps
+	/// sert à salir la tuile après un certain temps
 	/// </summary>
 	/// <param name="time"></param> le temps en secondes avant d'exécuter le code
 	/// <returns></returns> le temps que doit attendre le IEnumerator
-    public IEnumerator executeAfterTime(float time)
+    public IEnumerator salirTuile(float time)
 	{
         yield return new WaitForSeconds(time);
-        salirTuile();
-	}
+        changerMat();
+    }
 
-    
+    /// <summary>
+	/// sert à faire apparaître un alien après un certain temps
+	/// </summary>
+	/// <param name="time"></param> le temps en secondes avant d'exécuter le code
+	/// <returns></returns> le temps que doit attendre le IEnumerator
+    public IEnumerator apparaitreAlien(float time)
+    {
+        yield return new WaitForSeconds(time);
+        spawnAlien();
+    }
+
+    public void spawnAlien()
+	{
+
+	}
 }
