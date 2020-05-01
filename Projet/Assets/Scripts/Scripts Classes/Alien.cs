@@ -24,6 +24,8 @@ public class Alien : Objet
 
     private float tempsIdle;
 
+    protected float dommage = 2;
+
     override
     public Transform interaction(GameObject destination)
     {
@@ -38,13 +40,12 @@ public class Alien : Objet
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
-         
 
         Debug.DrawRay(transform.position, transform.forward * 100, Color.green);
         RaycastHit hit; //Création d'un hit pour le Raycast
@@ -109,8 +110,8 @@ public class Alien : Objet
     {
         if (tempsRestant >= time) //si sa fait plus que "time" secondes
         {
-            porteActive.durabilitee--;//réduit la durabilité de la porte
-            porteActive.durabilitee--;
+            porteActive.durabilitee=porteActive.durabilitee-dommage;//réduit la durabilité de la porte
+
             tempsRestant = 0; //reset le tempsRestants
         }
         else
@@ -123,7 +124,7 @@ public class Alien : Objet
     {
         if (tempsRestant >= time) //si sa fait plus que "time" secondes
         {
-            joueur.jaugeDeVie--;//réduit la durabilité de la porte           
+            joueur.jaugeDeVie=joueur.jaugeDeVie-dommage;//réduit la durabilité de la porte           
             Debug.Log("Ayoille donc caliss");
             tempsRestant = 0; //reset le tempsRestants
         }
