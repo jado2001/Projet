@@ -10,7 +10,6 @@ public class Porte : Objet
     public Vector3 lastPosition;
     public Vector3 startPos;
     public bool ouvert, estEnMouvement;
-    public int durabilitee = 10;
     public GameObject porteDetruite;
 
     override
@@ -21,6 +20,7 @@ public class Porte : Objet
     void Start()
     {
         lastPosition = transform.position;
+        durabilitee = 10;
     }
 
     override
@@ -64,7 +64,7 @@ public class Porte : Objet
     void remplacerPorte()
     {
         
-       Instantiate(porteDetruite, transform.position, Quaternion.identity);
+       GameObject PorteDetruite = Instantiate(porteDetruite, transform.position, Quaternion.identity) as GameObject;
         Destroy(gameObject);
     }
 

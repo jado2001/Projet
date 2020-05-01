@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class Alien : Objet
 {
-    public Transform joueur;
+    public Joueur joueur;
 
     public NavMeshAgent agent;
 
@@ -48,10 +48,10 @@ public class Alien : Objet
 
         Debug.DrawRay(transform.position, transform.forward * 100, Color.green);
         RaycastHit hit; //Création d'un hit pour le Raycast
-        Vector3 vecteurDirection = joueur.position - transform.position; //Vecteur entre le joueur et l'alien
+        Vector3 vecteurDirection = joueur.transform.parent.parent.position - transform.position; //Vecteur entre le joueur et l'alien
         if (Physics.Raycast(transform.position, vecteurDirection / vecteurDirection.magnitude, out hit) && hit.transform.gameObject.layer == joueur.gameObject.layer) //Si le ray entre l'alien et le joueur touche qqch et que se qqch est le joueur
         {
-            agent.SetDestination(joueur.position); //Dit à l'alien d'aller à la position du joueur
+            agent.SetDestination(joueur.transform.parent.parent.position); //Dit à l'alien d'aller à la position du joueur
             porteActive = null;
         }
         else if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.layer == 12)//Si le ray partant en avant de l'alien touche une porte
@@ -77,6 +77,9 @@ public class Alien : Objet
                 agent.SetDestination(RandomNavmeshLocation(20f)); //set la destination de l'alien un point aléatoire de 20 de rayon                
                 tempsIdle = 0;//reset le tempsIdle
             }
+        }
+        if ((transform.position - joueur.transform.parent.parent.position).magnitude <= 3){
+            attaquerJoueur(1);
         }
        if (porteActive != null && (transform.position - porteActive.gameObject.transform.position).magnitude <= 3) //si la porteActive est a moins de 3
         {
@@ -108,6 +111,20 @@ public class Alien : Objet
         {
             porteActive.durabilitee--;//réduit la durabilité de la porte
             porteActive.durabilitee--;
+            tempsRestant = 0; //reset le tempsRestants
+        }
+        else
+        {
+            tempsRestant += Time.deltaTime;//ajout le temps de la frame
+        }
+    }
+
+    public void attaquerJoueur(float time)
+    {
+        if (tempsRestant >= time) //si sa fait plus que "time" secondes
+        {
+            joueur.jaugeDeVie--;//réduit la durabilité de la porte           
+            Debug.Log("Ayoille donc caliss");
             tempsRestant = 0; //reset le tempsRestants
         }
         else
