@@ -42,7 +42,7 @@ public class Alien : Objet
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
          
 

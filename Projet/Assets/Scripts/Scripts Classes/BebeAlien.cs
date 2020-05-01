@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BebeAlien : MonoBehaviour
+public class BebeAlien : Alien
 {
     // Start is called before the first frame update
     void Start()
@@ -13,6 +13,6 @@ public class BebeAlien : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GetComponent<Alien>().FixedUpdate();
     }
 }
