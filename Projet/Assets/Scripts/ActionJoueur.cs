@@ -45,6 +45,17 @@ public class ActionJoueur : MonoBehaviour
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskSansInteraction))
         {
 
+<<<<<<< HEAD
+    void Interagir()
+    {
+        int layerMaskSansInteraction = 1 << 10 | 1 << 9 | 1 << 11 | 1 << 0;
+        layerMaskSansInteraction = ~layerMaskSansInteraction;
+        RaycastHit hit;
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskSansInteraction))
+        {
+            Debug.DrawRay(camera.transform.position, camera.transform.forward);
+=======
+>>>>>>> Ménage
             //Sauvegarde
             Transform sauvegarde = null;
             positionObjet = hit.transform.position;
