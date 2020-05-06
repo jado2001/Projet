@@ -22,12 +22,12 @@ public class Lavabo : Objet
 
         if (scriptCasserole != null)
         {
-            if (estSavon == true && scriptCasserole.estSale == true)
+            if (estSavon && scriptCasserole.estSale)
             {
                 scriptCasserole.estSale = false;
                 estSavon = false;
             }
-            else if (scriptCasserole.estSale == false)
+            else if (!scriptCasserole.estSale)
             {
                 scriptCasserole.estRemplie = true;
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Objet : MonoBehaviour
 {
-    public float tailleRamasse, layerObjet;
+    public float tailleRamasse, layerObjet, durabilitee;
     public abstract Transform interaction(GameObject destination);
 
     public abstract void utiliser();

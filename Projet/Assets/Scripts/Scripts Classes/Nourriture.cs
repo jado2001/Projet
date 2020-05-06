@@ -12,6 +12,7 @@ public class Nourriture : MiniObjet
     {
         if (!estPreparee)
         {
+            gameObject.tag = "Untagged";
             layerObjet = transform.gameObject.layer;
             //Ramasser l'objet
             transform.position = destination.transform.position;

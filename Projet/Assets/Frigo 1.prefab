@@ -12,10 +12,7 @@ GameObject:
   - component: {fileID: 2010154474922603165}
   - component: {fileID: 2010154474922603164}
   - component: {fileID: 2010154474922603139}
-<<<<<<< Updated upstream
-=======
   - component: {fileID: 2010154474922603138}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Porte
   m_TagString: Untagged
@@ -97,8 +94,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
-=======
 --- !u!95 &2010154474922603138
 Animator:
   serializedVersion: 3
@@ -118,7 +113,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
->>>>>>> Stashed changes
 --- !u!1 &2010154475031806769
 GameObject:
   m_ObjectHideFlags: 0

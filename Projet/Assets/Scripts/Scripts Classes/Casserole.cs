@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Collections.Specialized;
+using System.Security.Cryptography;
 
 public class Casserole : MiniObjet
 {
-    public bool estRemplie;
+    public bool estRemplie; //La casserole est remplie d'eau
     public bool estSale;
-    public Transform contenu;
+    public Transform contenu= null;
 
 
 
@@ -16,6 +18,7 @@ public class Casserole : MiniObjet
     {
 
     }
+
     override
     public Transform interaction(GameObject destination)  // méthode
     {
@@ -29,9 +32,8 @@ public class Casserole : MiniObjet
             scriptNourriture = trouverInteraction(scriptJoueur.objetTenu, scriptNourriture);
         }
 
-        if (scriptNourriture != null)
+        if (scriptNourriture != null ) //Vérifier si le joueur tient de la nourriture et si la casserole est vide
         {
-            //Ramasser l'objet
             scriptNourriture.gameObject.transform.parent = transform;
             scriptNourriture.gameObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
             scriptNourriture.gameObject.layer = 11;
@@ -44,8 +46,10 @@ public class Casserole : MiniObjet
         }
         else
         {
+            gameObject.tag = "Untagged";
+            estEntrainDeCuire = false;
+            //Ramasser la casserole
             layerObjet = transform.gameObject.layer;
-            //Ramasser l'objet
             transform.position = destination.transform.position;
             transform.localScale = transform.localScale * tailleRamasse;
             transform.gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -77,6 +81,9 @@ public class Casserole : MiniObjet
         return null;
     }
 
-
+    void Update()
+    {
+        //TODO: Vérifier si la casserole à atteint un certain niveau de cuisson et modifier son état
+    }
 
 }

@@ -81,9 +81,12 @@ public class ActionJoueur : MonoBehaviour
             {
                 script = trouverInteraction(sauvegarde, script);
                 objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
-            } else if (sauvegarde!=null)
+            } else if (sauvegarde!=null && objetTenu.gameObject.tag != "ObjetTenu")
             {
                 sauvegarde.position = positionObjet; //Déplacer l'objet tenu;
+            } else if (objetTenu.gameObject.tag == "ObjetTenu")
+            {
+                objetTenu = null;
             }
 
         }
@@ -108,7 +111,7 @@ public class ActionJoueur : MonoBehaviour
 
     void lancer()
     {
-
+        objetTenu.gameObject.GetComponent<Rigidbody>().isKinematic = false; //Redonner des physiques a l'objet
         objetTenu.localRotation = new Quaternion(1, 2, 3, 0);
         objetTenu.gameObject.GetComponent<Rigidbody>().AddForce(destination.forward * forceDeLancer);
         MiniObjet script = null;
