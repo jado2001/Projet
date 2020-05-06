@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Vaisseau.unity
+    guid: eed36dba6391bf545b651aad8cece4e4
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/Dialogue.unity
+    guid: f8439d37cbe340d41a36ae025f8bc9a8
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/Dialogue2.unity
+    guid: f501e5d3fc444460f877fc11f8a2b203
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/Dialogue3.unity
+    guid: 5c9fbeb42fb264e7eba61fff7d98a97a
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/Dialogue4.unity
+    guid: ed024b9e2b3b446618c9a44cc114d5b7
   m_configObjects: {}

@@ -44,7 +44,6 @@ public class MiniObjet: Objet
     override
     public void utiliser()
     {
-
     }
 
     public virtual void lancer()
