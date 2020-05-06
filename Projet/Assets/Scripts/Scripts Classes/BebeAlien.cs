@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BebeAlien : Alien
 {
+
+    private float dommage = 1;
+
     // Start is called before the first frame update
     void Start()
     {
