@@ -14,11 +14,7 @@ public class Alien : Objet
 
     private float rotation;
 
-    private bool hasTask = true;
-
     public Porte porteActive = null;
-
-    private bool isCoroutineExecuting = false;
 
     private float tempsRestant;
 

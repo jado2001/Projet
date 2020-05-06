@@ -11,8 +11,8 @@ public class BebeAlien : Alien
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        GetComponent<Alien>().FixedUpdate();
+        GetComponent<Alien>().verComportement();
     }
 }
