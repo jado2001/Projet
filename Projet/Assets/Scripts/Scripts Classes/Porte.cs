@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class Porte : Objet
@@ -9,6 +10,10 @@ public class Porte : Objet
     public Vector3 lastPosition;
     public Vector3 startPos;
     public bool ouvert, estEnMouvement;
+<<<<<<< HEAD
+    public GameObject porteDetruite;
+=======
+>>>>>>> master
 
     override
       public Transform interaction(GameObject destination)
@@ -19,6 +24,7 @@ public class Porte : Objet
     {
         durabilitee=10;
         lastPosition = transform.position;
+        durabilitee = 10;
     }
 
     override
@@ -29,7 +35,8 @@ public class Porte : Objet
     {
         if (durabilitee <= 0)
         {
-            Destroy(gameObject);
+            
+            remplacerPorte();
         }
         if (estEnMouvement)
         {
@@ -56,6 +63,13 @@ public class Porte : Objet
         transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
         distanceTravelled += Vector3.Distance(transform.position, lastPosition);
         lastPosition = transform.position;
+    }
+
+    void remplacerPorte()
+    {
+        
+       GameObject PorteDetruite = Instantiate(porteDetruite, transform.position, Quaternion.identity) as GameObject;
+        Destroy(gameObject);
     }
 
 }
