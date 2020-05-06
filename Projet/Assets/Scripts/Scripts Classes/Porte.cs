@@ -9,7 +9,7 @@ public class Porte : Objet
     public Vector3 lastPosition;
     public Vector3 startPos;
     public bool ouvert, estEnMouvement;
-    public int durabilitee = 10;
+
     override
       public Transform interaction(GameObject destination)
     {
@@ -17,6 +17,7 @@ public class Porte : Objet
     }
     void Start()
     {
+        durabilitee=10;
         lastPosition = transform.position;
     }
 
