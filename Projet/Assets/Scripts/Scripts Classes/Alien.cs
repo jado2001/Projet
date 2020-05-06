@@ -44,7 +44,14 @@ public class Alien : Objet
     }
 
     // Update is called once per frame
-    protected void FixedUpdate()
+    void FixedUpdate()
+    {
+
+        verComportement();
+
+    }
+
+    public void verComportement()
     {
 
         Debug.DrawRay(transform.position, transform.forward * 100, Color.green);
@@ -58,15 +65,15 @@ public class Alien : Objet
         else if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.layer == 12)//Si le ray partant en avant de l'alien touche une porte
         {
 
-            porteActive = trouverInteraction(hit.transform,porteActive);//Set la porte qu'il regarde comme la porteActive (l'objet au hit) 
+            porteActive = trouverInteraction(hit.transform, porteActive);//Set la porte qu'il regarde comme la porteActive (l'objet au hit) 
             Vector3 vecteurPorte = (transform.position - porteActive.gameObject.transform.position); //Vecteur entre la porte et l'alien
             Vector3 vecteurDifference = vecteurPorte;
             vecteurDifference.Normalize();
             agent.SetDestination((porteActive.transform.position) + (vecteurDifference)); //Set la destination de l'alien à la porteActive
-            transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);            
+            transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);
 
         }
-        
+
         else if (agent.velocity.magnitude == 0 && porteActive == null)//si l'alien ne bouge pas et qu'il n'a pas de porteActive
         {
 
@@ -79,17 +86,19 @@ public class Alien : Objet
                 tempsIdle = 0;//reset le tempsIdle
             }
         }
-        if ((transform.position - joueur.transform.parent.parent.position).magnitude <= 3){
+        if ((transform.position - joueur.transform.parent.parent.position).magnitude <= 3)
+        {
             attaquerJoueur(1);
         }
-       if (porteActive != null && (transform.position - porteActive.gameObject.transform.position).magnitude <= 3) //si la porteActive est a moins de 3
+        if (porteActive != null && (transform.position - porteActive.gameObject.transform.position).magnitude <= 3) //si la porteActive est a moins de 3
         {
-            
+
             transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);//regarde la porte
             attaquerPorte(1);//attaque la porte
         }
 
     }
+
     private T trouverInteraction<T>(Transform hit, T objetType) where T : MonoBehaviour
     {
         //Aller a travers la liste des scripts de l'objet pour utiliser celui qui possede interaction
@@ -145,4 +154,6 @@ public class Alien : Objet
         }
         return finalPosition;
     }
+
+
 }
