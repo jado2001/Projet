@@ -10,10 +10,7 @@ public class Porte : Objet
     public Vector3 lastPosition;
     public Vector3 startPos;
     public bool ouvert, estEnMouvement;
-<<<<<<< HEAD
     public GameObject porteDetruite;
-=======
->>>>>>> master
 
     override
       public Transform interaction(GameObject destination)
