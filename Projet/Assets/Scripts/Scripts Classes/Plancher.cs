@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Classe des tuiles du plancher du vaisseau
@@ -9,43 +10,73 @@ public class Plancher : MonoBehaviour
 {
 
     public bool estSale = false;///sert à vérifier si la tuile est sale
-    public int propreter = 20;///valeur de propreté de la tuile
     public Material matSale;///material à appliquer sur les tuiles quand elles sont sales
+    public GameObject alien; /// <summary>modèle de l'alien qui sert de base pour en créer d'autres quand la tuile est assez sale
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(executeAfterTime(10));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-        //float temps2;
+        declencherCoroutine();
     }
 
     /// <summary>
 	/// sert à changer le material de la tuile pour qu'elle est l'air sale
 	/// </summary>
-    public void salirTuile()
+    public void changerMat()
 	{
         GetComponent<Renderer>().material = matSale;
+        estSale = true;
+        StartCoroutine(apparaitreAlien(Random.Range(120, 600)));
 	}
 
     /// <summary>
-	/// sert à exécuter des actions après un certain temps
+	/// sert à déclencher la coroutine qui rend les tuiles sales
+	/// </summary>
+    public void declencherCoroutine()
+	{
+        StartCoroutine(salirTuile(Random.Range(120, 600)));
+    }
+
+    /// <summary>
+	/// sert à salir la tuile après un certain temps
 	/// </summary>
 	/// <param name="time"></param> le temps en secondes avant d'exécuter le code
 	/// <returns></returns> le temps que doit attendre le IEnumerator
-    public IEnumerator executeAfterTime(float time)
+    public IEnumerator salirTuile(float time)
 	{
         yield return new WaitForSeconds(time);
-        salirTuile();
-	}
+        changerMat();
+    }
 
-    
+    /// <summary>
+	/// sert à faire apparaître un alien après un certain temps
+	/// </summary>
+	/// <param name="time"></param> le temps en secondes avant d'exécuter le code
+	/// <returns></returns> le temps que doit attendre le IEnumerator
+    public IEnumerator apparaitreAlien(float time)
+    {
+        yield return new WaitForSeconds(time);
+        spawnAlien();
+    }
+
+    /// <summary>
+	/// crée un nouveau alien
+	/// </summary>
+    public void spawnAlien()
+    {
+		if (estSale) { 
+        GameObject nouveauAlien = Instantiate(alien, transform.position, Quaternion.identity) as GameObject;
+        }
+    }
+
+    /// <summary>
+	/// setter du boolean estSale
+	/// </summary>
+	/// <param name="estSale"></param> la valeur changée du boolean
+    public void setEstSale(bool estSale) {
+        this.estSale = estSale;
+    }
+
 }

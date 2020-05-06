@@ -1,6 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
-
 
 public class ActionJoueur : MonoBehaviour
 {
@@ -9,14 +8,14 @@ public class ActionJoueur : MonoBehaviour
     public Transform objetTenu = null;
     public Transform destination;
     public float forceDeLancer, tailleRamasse, layerObjet;
-    private Vector3 positionObjet = new Vector3(0f, 0f, 0f);
+    private Vector3 positionObjet = new Vector3(0f,0f,0f);
     //Liste de tous les scripts présents dans le jeu
 
-    /// <summary>
-    /// IL FAUT RÉGLER mANGER PENDANT QU'ON TIENT UN OBJET
-    /// </summary>
+/// <summary>
+/// IL FAUT RÉGLER mANGER PENDANT QU'ON TIENT UN OBJET
+/// </summary>
     //Méthode Start
-    void Start()
+    void Start() 
     {
     }
 
@@ -44,7 +43,7 @@ public class ActionJoueur : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range, layerMaskSansInteraction))
         {
-
+            
             //Sauvegarde
             Transform sauvegarde = null;
             positionObjet = hit.transform.position;
@@ -55,13 +54,13 @@ public class ActionJoueur : MonoBehaviour
             }
             //Trouver le script 
             Objet script = null;
-            script = trouverInteraction(hit.transform, script);
+            script= trouverInteraction(hit.transform, script);
 
             if (objetTenu != null)
             {
                 lacher();
             }
-            objetTenu = script.interaction(destination.gameObject); // Prendre/Intéragir avec l'objet
+                objetTenu = script.interaction(destination.gameObject); // Prendre/Intéragir avec l'objet
             if (objetTenu != null)
             {
                 tailleRamasse = script.tailleRamasse; //Prendre la taille de l'objet
@@ -69,24 +68,25 @@ public class ActionJoueur : MonoBehaviour
             }
             //Debug Log pour savoir quel objet est touché et si un objet est rammassé
             Debug.Log("Objet Touché:" + hit.transform.name);
-            if (objetTenu != null)
+            if (objetTenu!=null)
             {
                 Debug.Log("Objet Rammassé:" + objetTenu.name);
-            }
-            else
+            } else
             {
                 Debug.Log("Objet Rammassé: Aucun");
             }
 
             //Vérifier si un nouvel objet est Tenu
-            if (objetTenu == null && sauvegarde != null)
+            if (objetTenu == null && sauvegarde!=null)
             {
                 script = trouverInteraction(sauvegarde, script);
                 objetTenu = script.interaction(destination.gameObject); //*Prendre* l'objet
-            }
-            else if (sauvegarde != null)
+            } else if (sauvegarde!=null && objetTenu.gameObject.tag != "ObjetTenu")
             {
                 sauvegarde.position = positionObjet; //Déplacer l'objet tenu;
+            } else if (objetTenu.gameObject.tag == "ObjetTenu")
+            {
+                objetTenu = null;
             }
 
         }
@@ -99,7 +99,7 @@ public class ActionJoueur : MonoBehaviour
         foreach (T script in listeComponents)
         {
             try
-            {
+            {   
                 return script;
             }
             catch (Exception e)
@@ -111,7 +111,7 @@ public class ActionJoueur : MonoBehaviour
 
     void lancer()
     {
-
+        objetTenu.gameObject.GetComponent<Rigidbody>().isKinematic = false; //Redonner des physiques a l'objet
         objetTenu.localRotation = new Quaternion(1, 2, 3, 0);
         objetTenu.gameObject.GetComponent<Rigidbody>().AddForce(destination.forward * forceDeLancer);
         MiniObjet script = null;
@@ -133,7 +133,7 @@ public class ActionJoueur : MonoBehaviour
     private void utilisation()
     {
         //Vérifier si on tien un objet
-        if (objetTenu != null)
+        if (objetTenu!=null)
         {
             Objet script = null;
             script = trouverInteraction(objetTenu, script);  //Trouver son script
