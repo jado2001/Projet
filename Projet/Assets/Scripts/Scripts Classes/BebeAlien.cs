@@ -5,7 +5,7 @@ using UnityEngine;
 public class BebeAlien : Alien
 {
 
-    private float dommage = 1;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,6 @@ public class BebeAlien : Alien
     // Update is called once per frame
     void FixedUpdate()
     {
-        GetComponent<Alien>().verComportement();
+        GetComponent<Alien>().verComportement(1);
     }
 }

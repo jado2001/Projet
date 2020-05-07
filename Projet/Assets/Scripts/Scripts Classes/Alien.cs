@@ -20,7 +20,7 @@ public class Alien : Objet
 
     private float tempsIdle;
 
-    protected float dommage = 2;
+    //protected float dommage = 2;
 
     override
     public Transform interaction(GameObject destination)
@@ -43,11 +43,11 @@ public class Alien : Objet
     void FixedUpdate()
     {
 
-        verComportement();
+        verComportement(2);
 
     }
 
-    public void verComportement()
+    public void verComportement(float dommage)
     {
 
         Debug.DrawRay(transform.position, transform.forward * 100, Color.green);
@@ -84,13 +84,13 @@ public class Alien : Objet
         }
         if ((transform.position - joueur.transform.parent.parent.position).magnitude <= 3)
         {
-            attaquerJoueur(1);
+            attaquerJoueur(1, dommage);
         }
         if (porteActive != null && (transform.position - porteActive.gameObject.transform.position).magnitude <= 3) //si la porteActive est a moins de 3
         {
 
             transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);//regarde la porte
-            attaquerPorte(1);//attaque la porte
+            attaquerPorte(1, dommage);//attaque la porte
         }
 
     }
@@ -111,7 +111,7 @@ public class Alien : Objet
         }
         return null;
     }
-    public void attaquerPorte (float time)
+    public void attaquerPorte (float time, float dommage)
     {
         if (tempsRestant >= time) //si sa fait plus que "time" secondes
         {
@@ -125,7 +125,7 @@ public class Alien : Objet
         }
     }
 
-    public void attaquerJoueur(float time)
+    public void attaquerJoueur(float time, float dommage)
     {
         if (tempsRestant >= time) //si sa fait plus que "time" secondes
         {
