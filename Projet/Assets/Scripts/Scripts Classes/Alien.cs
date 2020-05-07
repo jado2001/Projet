@@ -20,7 +20,6 @@ public class Alien : Objet
 
     private float tempsIdle;
 
-    //protected float dommage = 2;
 
     override
     public Transform interaction(GameObject destination)
