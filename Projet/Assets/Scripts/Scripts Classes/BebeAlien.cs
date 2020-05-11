@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.AI;
 
 public class BebeAlien : Alien
 {
-   
-    private Queue<GameObject> nourriture = new Queue<GameObject>(); /// la liste d'objets avec le script nourriture dans la scène
+
+    private List<GameObject> distanceNourriture; /// la liste d'objets avec le script nourriture dans la scène
     private GameObject nourritureCible; ///l'objet que le bébé va chercher pour s'alimenter
 
 
@@ -19,8 +20,9 @@ public class BebeAlien : Alien
 
 		if (chercherNourriture())
 		{
-            nourritureCible = nourriture.Dequeue();
-		}
+            //nourritureCible = nourriture.Dequeue();
+            agent.SetDestination(nourritureCible.transform.position);
+        }
     }
 
     /// <summary>
@@ -29,17 +31,19 @@ public class BebeAlien : Alien
 	/// <returns></returns> si c'est true, il y a de la nourriture dans la scène, si false, il y en a plus
     public bool chercherNourriture()
     {
+        
+        distanceNourriture = new List<GameObject>();
 
         foreach (GameObject objet in GetAllObjectsOnlyInScene())
         {
             var script = objet.GetComponent<Nourriture>();
             if (script != null)
             {
-                nourriture.Enqueue(objet);
+                //distanceNourriture.Enqueue(objet);
             }
         }
 
-        if (nourriture.Count != 0)
+        if (distanceNourriture.Count != 0)
 		{
             return true;
         }
