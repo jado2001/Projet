@@ -4,51 +4,81 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.AI;
 
+/// <summary>
+/// classe du bébé extraterrestre qui naît de la saleté du plancher du vaisseau
+/// </summary>
 public class BebeAlien : Alien
 {
 
-    private List<GameObject> distanceNourriture; /// la liste d'objets avec le script nourriture dans la scène
+    
     private GameObject nourritureCible; ///l'objet que le bébé va chercher pour s'alimenter
+    private float faim = 20;
+    private Vector3 distance;
 
 
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        GetComponent<Alien>().verComportement(1);
-
-		if (chercherNourriture())
+		if (chercherNourriture()!= null)
 		{
-            //nourritureCible = nourriture.Dequeue();
             agent.SetDestination(nourritureCible.transform.position);
+            verifierDistanceRestante();
+        }
+
+        if (faim <= 0)
+		{
+            transformerBebe();
+		}
+        GetComponent<Alien>().verComportement(1);
+    }
+
+    /// <summary>
+	/// sert à vérifier combien de distance il reste entre le bébé alien et son objectif
+	/// </summary>
+    public void verifierDistanceRestante()
+	{
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    faim = faim - nourritureCible.GetComponent<Nourriture>().faimRecuperee;
+                    Destroy(nourritureCible);
+                }
+            }
         }
     }
+
+
+
 
     /// <summary>
 	/// sert à rechercher des objets dans la scène qui ont le script Nourriture
 	/// </summary>
-	/// <returns></returns> si c'est true, il y a de la nourriture dans la scène, si false, il y en a plus
-    public bool chercherNourriture()
+	/// <returns></returns> la nourriture que le bébé va aller chercher
+    public GameObject chercherNourriture()
     {
+        float distanceMin = 1000;
         
-        distanceNourriture = new List<GameObject>();
+        
 
         foreach (GameObject objet in GetAllObjectsOnlyInScene())
         {
             var script = objet.GetComponent<Nourriture>();
             if (script != null)
             {
-                //distanceNourriture.Enqueue(objet);
+                distance = objet.transform.position - transform.position;
+				if (distance.magnitude <= distanceMin)
+				{
+                    distanceMin = distance.magnitude;
+                    nourritureCible = objet;
+				}                
             }
         }
 
-        if (distanceNourriture.Count != 0)
-		{
-            return true;
-        }
-
-        return false;
+        return nourritureCible;
     }
 
     /// <summary>
@@ -57,6 +87,8 @@ public class BebeAlien : Alien
     public void transformerBebe()
 	{
         transform.localScale = new Vector3(1, 1, 1);
+        gameObject.AddComponent<Alien>();
+        Destroy(this);
 	}
 
     /// <summary>
