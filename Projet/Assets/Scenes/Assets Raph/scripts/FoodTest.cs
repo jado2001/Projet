@@ -13,6 +13,6 @@ public class FoodTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FoodBarHandler.SetFoodBarValue(FoodBarHandler.GetFoodBarValue() - 0.01f);
+        //FoodBarHandler.SetFoodBarValue(FoodBarHandler.GetFoodBarValue() - 0.01f);
     }
 }
