@@ -12,25 +12,29 @@ public class BebeAlien : Alien
 
     
     private GameObject nourritureCible; ///l'objet que le bébé va chercher pour s'alimenter
-    private float faim = 20;
-    private Vector3 distance;
+    public float faim = 50;/// <summary> la jauge de faim du bébé
+    private Vector3 distance; /// <summary> la distance entre un aliment et le bébé
 
 
 
     // Update is called once per frame
     void FixedUpdate()
     {
-		if (chercherNourriture()!= null)
-		{
+        if (chercherNourriture() != null)
+        {
             agent.SetDestination(nourritureCible.transform.position);
             verifierDistanceRestante();
+            if (faim <= 0)
+            {
+                transformerBebe();
+            }
+        } else
+        {
+            verComportement(1);
         }
 
-        if (faim <= 0)
-		{
-            transformerBebe();
-		}
-        GetComponent<Alien>().verComportement(1);
+        
+
     }
 
     /// <summary>
@@ -87,7 +91,9 @@ public class BebeAlien : Alien
     public void transformerBebe()
 	{
         transform.localScale = new Vector3(1, 1, 1);
-        gameObject.AddComponent<Alien>();
+        Alien scriptAlien = gameObject.AddComponent(typeof(Alien)) as Alien;
+        scriptAlien.joueur = joueur;
+        scriptAlien.agent = agent;
         Destroy(this);
 	}
 
