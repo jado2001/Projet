@@ -12,6 +12,8 @@ public class Alien : Objet
 
     public NavMeshAgent agent;
 
+    public Animator animator;
+
     private float rotation;
 
     public Porte porteActive = null;
@@ -56,6 +58,8 @@ public class Alien : Objet
         {
             agent.SetDestination(joueur.transform.parent.parent.position); //Dit à l'alien d'aller à la position du joueur
             porteActive = null;
+
+            animator.SetBool("isMoving", true);
         }
         else if (Physics.Raycast(transform.position, transform.forward, out hit) && hit.transform.gameObject.layer == 12)//Si le ray partant en avant de l'alien touche une porte
         {
@@ -66,12 +70,13 @@ public class Alien : Objet
             vecteurDifference.Normalize();
             agent.SetDestination((porteActive.transform.position) + (vecteurDifference)); //Set la destination de l'alien à la porteActive
             transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);
-
+            animator.SetBool("isMoving", true);
         }
 
         else if (agent.velocity.magnitude == 0 && porteActive == null)//si l'alien ne bouge pas et qu'il n'a pas de porteActive
-        {
-
+        {            
+                animator.SetBool("isMoving", false);            
+            
             rotation = rotation + .5f; //Change la valeur de la rotation
             transform.localRotation = Quaternion.Euler(0f, rotation, 0f);//Fait tourner l'alien sur lui-même
             tempsIdle += Time.deltaTime; //incrémente le temps du temps que le frame a pris
@@ -79,15 +84,15 @@ public class Alien : Objet
             {
                 agent.SetDestination(RandomNavmeshLocation(20f)); //set la destination de l'alien un point aléatoire de 20 de rayon                
                 tempsIdle = 0;//reset le tempsIdle
+                animator.SetBool("isMoving", true);
             }
         }
         if ((transform.position - joueur.transform.parent.parent.position).magnitude <= 3)
-        {
+        {            
             attaquerJoueur(1, dommage);
         }
         if (porteActive != null && (transform.position - porteActive.gameObject.transform.position).magnitude <= 3) //si la porteActive est a moins de 3
-        {
-
+        {       
             transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);//regarde la porte
             attaquerPorte(1, dommage);//attaque la porte
         }
@@ -114,9 +119,11 @@ public class Alien : Objet
     {
         if (tempsRestant >= time) //si sa fait plus que "time" secondes
         {
+            animator.SetTrigger("isHitting");
             porteActive.durabilitee=porteActive.durabilitee-dommage;//réduit la durabilité de la porte
 
             tempsRestant = 0; //reset le tempsRestants
+            
         }
         else
         {
@@ -128,9 +135,11 @@ public class Alien : Objet
     {
         if (tempsRestant >= time) //si sa fait plus que "time" secondes
         {
+            animator.SetTrigger("isHitting");
             joueur.jaugeDeVie=joueur.jaugeDeVie-dommage;//réduit la durabilité de la porte           
             Debug.Log("Ayoille donc caliss");
             tempsRestant = 0; //reset le tempsRestants
+            
         }
         else
         {
