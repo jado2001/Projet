@@ -1,14 +1,17 @@
 using UnityEngine;
 using System;
+using System.Security.Cryptography;
+
 
 public class ActionJoueur : MonoBehaviour
 {
-    public float range;
+    private float range = 0;
     public Camera camera;
     public Transform objetTenu = null;
     public Transform destination;
     public float forceDeLancer, tailleRamasse, layerObjet;
     private Vector3 positionObjet = new Vector3(0f,0f,0f);
+    public Joueur joueur;
     //Liste de tous les scripts présents dans le jeu
 
 /// <summary>
@@ -17,6 +20,7 @@ public class ActionJoueur : MonoBehaviour
     //Méthode Start
     void Start() 
     {
+        range = joueur.range;
     }
 
     // Update is called once per frame

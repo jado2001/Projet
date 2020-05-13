@@ -7,6 +7,7 @@ public class Joueur : MonoBehaviour
     public bool estAssome;
     public float jaugeDeVie, jaugeDeFaim, vitesse;
     public Transform objetTenu;
+    public float range; 
 
     private void Start()
     {

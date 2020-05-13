@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using System;
+using System.Collections.Specialized;
 
 public class Four : Objet
 {
@@ -36,7 +37,7 @@ public class Four : Objet
                 listeDestinationsLibres[i] = false;
             }
         }
-
+    
         }
 
     override
@@ -96,14 +97,16 @@ public class Four : Objet
     //Deplacer la MiniObjet à cet endroit
     private void deplacerMiniObjet(Transform destination, MiniObjet miniObjet)
     {
-        Vector3 initialScale = miniObjet.gameObject.transform.localScale; 
-        miniObjet.gameObject.transform.SetParent(destination, true);
-        miniObjet.gameObject.transform.localScale = initialScale;
+        Vector3 initialScale = miniObjet.gameObject.transform.localScale;
+        destination.parent = null;
+        destination.localScale = new Vector3(1, 1, 1);
+        miniObjet.gameObject.transform.parent = destination;
+        destination.SetParent(transform, true);
         miniObjet.gameObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
         miniObjet.gameObject.layer = 8;
         miniObjet.gameObject.tag = "ObjetTenu";
         miniObjet.gameObject.transform.position = destination.position + destination.up;
         miniObjet.gameObject.GetComponent<Collider>().isTrigger = false;
-        miniObjet.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        miniObjet.gameObject.GetComponent<Rigidbody>().isKinematic = true;  
     }
 }

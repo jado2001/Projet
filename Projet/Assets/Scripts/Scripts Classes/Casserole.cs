@@ -32,7 +32,7 @@ public class Casserole : MiniObjet
             scriptNourriture = trouverInteraction(scriptJoueur.objetTenu, scriptNourriture);
         }
 
-        if (scriptNourriture != null ) //Vérifier si le joueur tient de la nourriture et si la casserole est vide
+        if (scriptNourriture != null && scriptNourriture.estCoupe) //Vérifier si le joueur tient de la nourriture et si la casserole est vide
         {
             scriptNourriture.gameObject.transform.parent = transform;
             scriptNourriture.gameObject.transform.localRotation = new Quaternion(0, 0, 0, 0);

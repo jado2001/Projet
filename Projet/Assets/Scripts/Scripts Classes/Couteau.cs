@@ -5,8 +5,31 @@ using System;
 
 public class Couteau : MiniObjet
 {
+    private float rangeJoueur;
+    public float x;
+    public float y;
+    public float z;
+    public float w;
+    private Camera cameraJoueur;
+    override
+    public Transform interaction(GameObject destination)
+    {
+        Joueur scriptJoueur = null;
+        scriptJoueur = trouverInteraction(destination.transform, scriptJoueur);
+        rangeJoueur = scriptJoueur.range;
+        gameObject.tag = "Untagged";
+        layerObjet = transform.gameObject.layer;
+        //Ramasser l'objet
+        transform.position = destination.transform.position;
+        cameraJoueur = destination.transform.parent.gameObject.GetComponent<Camera>();
+        transform.localScale = transform.localScale * tailleRamasse;
+        transform.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        transform.parent = destination.transform;
+        transform.localRotation = new Quaternion(x, y, z, w);
+        gameObject.layer = 11;
 
-
+        return transform;
+    }
     override
     public void utiliser()
     {
@@ -17,7 +40,9 @@ public class Couteau : MiniObjet
 
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+
+
+        if (Physics.Raycast(cameraJoueur.transform.position, cameraJoueur.transform.forward, out hit, rangeJoueur, layerMask))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
