@@ -11,8 +11,11 @@ public class Joueur : MonoBehaviour
 
     private void Start()
     {
-        jaugeDeVie = 10;
+        jaugeDeVie = 100;
+        InvokeRepeating("diminuerFaim", 2.0f, 120f);
     }
+
+
     void Update()
     {
         //Acceder au joueur à travers Destination --> Camera --> Joueur
@@ -23,5 +26,16 @@ public class Joueur : MonoBehaviour
         {
             Debug.Log("Ye mort");
         }
+        
+        
     }
+
+    /// <summary>
+	/// sert à faire diminuer la faim du joueur aléatoirement
+	/// </summary>
+    public void diminuerFaim()
+    {
+        jaugeDeFaim = jaugeDeFaim - (Random.Range(1, 10));
+    }
+
 }
