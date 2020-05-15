@@ -11,11 +11,9 @@ public class Frigo : Objet
     public GameObject[] listePrefabsNourriture; //Liste des aliments qui peuvent se trouver dans le frigo
     private float temps=0; //Compteur avant de rafraichir tous les aliments
     public float distanceInfluence; //Rayon pour que le frigo puisse faire disparaitre un objet
-    private Animation animation;
-
+    public Animator animator;
     void Start()
     {
-        animation = gameObject.GetComponent<Animation>();
         estOuvert = false;
         remplir();
 
@@ -40,15 +38,9 @@ public class Frigo : Objet
     override
     public Transform interaction(GameObject destination)
     {
-        if (estOuvert)
-        {
-            animation.Play("fermeturePorte");
-            estOuvert = false;
-        } else
-        {
-            animation.Play("ouverturePorte");
-            estOuvert = true;
-        }
+        //Animations Porte
+        estOuvert = !estOuvert;
+        animator.SetBool("estOuvert", estOuvert);
         rafraichir();
         return null;
     }   
@@ -111,7 +103,6 @@ public class Frigo : Objet
         foreach (Transform destination in listeDestinations) //Pour chaque destination on ajoute un nourriture
         {
             approvisionner(Random.value * 100, destination.position); //Faire apparaitre une nourriture choisi au hasard à la position de la destination
-            Debug.Log("Approvisionenement");
         }
     }
 
