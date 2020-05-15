@@ -12,11 +12,11 @@ public class HealthBarHandler : MonoBehaviour
     public static void SetHealthBarValue(float value)
     {
         HealthBarImage.fillAmount = value;
-        if(HealthBarImage.fillAmount < 0.2f)
+        if(HealthBarImage.fillAmount <= 2)
         {
             SetHealthBarColor(Color.red);
         }
-        else if(HealthBarImage.fillAmount < 0.4f)
+        else if(HealthBarImage.fillAmount <= 5)
         {
             SetHealthBarColor(Color.yellow);
         }
