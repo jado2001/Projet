@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
 public class Casserole : MiniObjet
 {
@@ -39,6 +40,7 @@ public class Casserole : MiniObjet
             scriptNourriture.gameObject.layer = 11;
             scriptNourriture.gameObject.tag = "ObjetTenu";
             scriptNourriture.gameObject.transform.position = transform.position + transform.up;
+            UnityEngine.Debug.Log("boogieman");
             scriptNourriture.gameObject.GetComponent<Collider>().isTrigger = true;
             scriptNourriture.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             contenu = scriptNourriture.gameObject.transform;
