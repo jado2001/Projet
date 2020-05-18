@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Joueur : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class Joueur : MonoBehaviour
         objetTenu = joueur.gameObject.GetComponent<ActionJoueur>().objetTenu;
         if (jaugeDeVie <= 0)
         {
+            SceneManager.LoadScene(5);///Envoie le joueur à la scène du Game Over
             Debug.Log("Ye mort");
         }
         

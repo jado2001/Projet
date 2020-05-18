@@ -15,11 +15,11 @@ public class FoodBarHandler : MonoBehaviour
     public static void SetFoodBarValue(float value)
     {
         FoodBarImage.fillAmount = value;
-        if (FoodBarImage.fillAmount <= 0.02f)
+        if (FoodBarImage.fillAmount <= 0.20f)
         {
             SetFoodBarColor(Color.red);
         }
-        else if (FoodBarImage.fillAmount <= 0.05f)
+        else if (FoodBarImage.fillAmount <= 0.50f)
         {
             SetFoodBarColor(Color.yellow);
         }
