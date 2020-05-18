@@ -38,6 +38,10 @@ public class ActionJoueur : MonoBehaviour
         {
             lancer();
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
+        }
     }
 
     void Interagir()
