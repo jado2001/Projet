@@ -71,4 +71,7 @@ public class detecterTouches : MonoBehaviour
             choixC.GetComponent<DialogueTrigger>().TriggerQuestion();
         }
     }
+
+   
+
 }

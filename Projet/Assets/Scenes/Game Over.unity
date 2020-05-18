@@ -823,7 +823,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Quitter
+  m_Text: 'Quitter (Q)
 
 '
 --- !u!222 &1340608516
@@ -902,7 +902,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Recommencer
+  m_Text: Recommencer (R)
 --- !u!222 &1633694801
 CanvasRenderer:
   m_ObjectHideFlags: 0
