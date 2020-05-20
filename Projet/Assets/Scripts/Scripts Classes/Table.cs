@@ -122,7 +122,11 @@ public class Table : Objet
                 Destroy(scriptNourriture.gameObject);
 
                 plein = true;
-            }
+
+                //Modifier la casserole
+                scriptCasserole.estRemplie = false;
+                scriptCasserole.estSale = true;           
+                    }
         }
 
 
