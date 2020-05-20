@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dialogue/Dialogue4.unity
     guid: ed024b9e2b3b446618c9a44cc114d5b7
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: ff44f1ada756a4f5d9a950e9591836db
   m_configObjects: {}

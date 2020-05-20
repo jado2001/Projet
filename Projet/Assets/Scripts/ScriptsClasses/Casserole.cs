@@ -4,14 +4,16 @@ using UnityEngine;
 using System;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
 public class Casserole : MiniObjet
 {
     public bool estRemplie; //La casserole est remplie d'eau
     public bool estSale;
     public Transform contenu= null;
-
-
+    public Renderer renderer=null;
+    public Material materielEau;
+    public Material materialSale;
 
     override
         public void utiliser()
@@ -32,13 +34,14 @@ public class Casserole : MiniObjet
             scriptNourriture = trouverInteraction(scriptJoueur.objetTenu, scriptNourriture);
         }
 
-        if (scriptNourriture != null && scriptNourriture.estCoupe) //Vérifier si le joueur tient de la nourriture et si la casserole est vide
+        if (scriptNourriture != null && scriptNourriture.estCoupe && contenu == null) //Vérifier si le joueur tient de la nourriture et si la casserole est vide
         {
             scriptNourriture.gameObject.transform.parent = transform;
             scriptNourriture.gameObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
             scriptNourriture.gameObject.layer = 11;
             scriptNourriture.gameObject.tag = "ObjetTenu";
-            scriptNourriture.gameObject.transform.position = transform.position + transform.up;
+            scriptNourriture.gameObject.transform.position = transform.position + transform.up/2 ;
+            UnityEngine.Debug.Log("boogieman");
             scriptNourriture.gameObject.GetComponent<Collider>().isTrigger = true;
             scriptNourriture.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             contenu = scriptNourriture.gameObject.transform;
@@ -50,11 +53,12 @@ public class Casserole : MiniObjet
             estEntrainDeCuire = false;
             //Ramasser la casserole
             layerObjet = transform.gameObject.layer;
-            transform.position = destination.transform.position;
+            transform.position = destination.transform.position - destination.transform.forward/5 - destination.transform.up/4;
             transform.localScale = transform.localScale * tailleRamasse;
             transform.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             transform.parent = destination.transform;
             transform.localRotation = new Quaternion(0, 0, 0, 0);
+            transform.Rotate(-20, 0, 0, Space.Self);
             gameObject.layer = 11;
             return transform;
         }
@@ -83,7 +87,23 @@ public class Casserole : MiniObjet
 
     void Update()
     {
-        //TODO: Vérifier si la casserole à atteint un certain niveau de cuisson et modifier son état
+        //TODO: Vérifier si la casserole à atteint un certain état et changer son apparence
+        try
+        {
+            if (estRemplie || estSale)
+            {
+                renderer.enabled = true;
+            }
+            else
+            {
+                renderer.enabled = false;
+            }
+            if (estRemplie) renderer.material = materielEau;
+            if (estSale) renderer.material = materialSale;
+        } catch(Exception e)
+        {
+
+        }
     }
 
 }

@@ -113,7 +113,7 @@ public class Table : Objet
                 foreach (Transform endroit in listeDestinations)
                 {
 
-                    GameObject clone = (GameObject)Instantiate(scriptNourriture.gameObject, endroit.position, Quaternion.identity); // on le copie 4 fois
+                    GameObject clone = (GameObject)Instantiate(scriptNourriture.gameObject, endroit.position + (endroit.up/10), Quaternion.identity); // on le copie 4 fois
                     clone.transform.parent = endroit.parent; //on dit a chaque nourriture de rester 
                     //on rajoute les objets nourritures a une liste de transform pourqu'ils apparaissent sur la table
                     listeNourriture.Add(clone);
@@ -122,7 +122,11 @@ public class Table : Objet
                 Destroy(scriptNourriture.gameObject);
 
                 plein = true;
-            }
+
+                //Modifier la casserole
+                scriptCasserole.estRemplie = false;
+                scriptCasserole.estSale = true;           
+                    }
         }
 
 
