@@ -19,6 +19,7 @@ public class Joueur : MonoBehaviour
 
     void Update()
     {
+        
         //Acceder au joueur à travers Destination --> Camera --> Joueur
         Transform joueur = (gameObject.transform.parent).parent;
         //Acceder au script ActionJoueur du joueur pour ensuite prendre l'objetTenu et l'ajouter dans l'inventaire
