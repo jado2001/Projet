@@ -22,6 +22,10 @@ public class detecterTouches : MonoBehaviour
 	/// </summary>
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
+        }
         activerCommandesPrincipales();
         verifierReponse();        
     }
