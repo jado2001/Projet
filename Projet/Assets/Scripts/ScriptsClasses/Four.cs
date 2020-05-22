@@ -7,12 +7,17 @@ using System.Collections.Specialized;
 
 public class Four : Objet
 {
-    public Transform[] listeDestinations= new Transform[4];
-    public List<MiniObjet> listeCasseroles= new List<MiniObjet>();
-    public bool[] listeDestinationsLibres= new bool[4];
+    public Transform[] listeDestinations = new Transform[4];
+    public List<MiniObjet> listeCasseroles = new List<MiniObjet>();
+    public bool[] listeDestinationsLibres = new bool[4];
     public int nombreObjetsEnFeu;
+<<<<<<< HEAD:Projet/Assets/Scripts/Scripts Classes/Four.cs
+    public List<CuissonHandler> listeCanvas= new List<CuissonHandler>();
+=======
+    public List<CuissonHandler> listeCanvas = new List<CuissonHandler>();
+>>>>>>> master:Projet/Assets/Scripts/ScriptsClasses/Four.cs
 
-
+    //Lui c'est le bon
     // Update is called once per frame
     void Update()
     {
@@ -21,15 +26,15 @@ public class Four : Objet
         //Augmenter la température des objets entrain de cuire et les faire brûler
         foreach (MiniObjet miniObjet in listeCasseroles)
         {
-            if (miniObjet!=null)
+            if (miniObjet != null)
             {
-                miniObjet.cuisson += Time.deltaTime*(nombreObjetsEnFeu+1); //Augmenter la cuisson de l'objet
-            } 
+                miniObjet.cuisson += Time.deltaTime * (nombreObjetsEnFeu + 1); //Augmenter la cuisson de l'objet
+            }
         }
 
         //Vérifier si les objets sont encore là
         List<MiniObjet> listeTemporaire = listeCasseroles;
-        for (int i=0; i<listeTemporaire.Count;i++)
+        for (int i = 0; i < listeTemporaire.Count; i++)
         {
             if (!listeCasseroles[i].estEntrainDeCuire)
             {
@@ -37,8 +42,34 @@ public class Four : Objet
                 listeDestinationsLibres[i] = false;
             }
         }
-    
+
+        //Modifer la barre de cuisson
+<<<<<<< HEAD:Projet/Assets/Scripts/Scripts Classes/Four.cs
+        for (int i=0;i<listeCanvas.Count;i++)
+=======
+        for (int i = 0; i < listeCanvas.Count; i++)
+>>>>>>> master:Projet/Assets/Scripts/ScriptsClasses/Four.cs
+        {
+            if (listeDestinationsLibres[i])
+            {
+                listeCanvas[i].SetCuissonBarValue(listeCasseroles[i].cuisson / 30.0f);
+<<<<<<< HEAD:Projet/Assets/Scripts/Scripts Classes/Four.cs
+            } else
+            {
+                listeCanvas[i].SetCuissonBarValue(0);
+            }
         }
+    
+=======
+            }
+            else
+            {
+                listeCanvas[i].SetCuissonBarValue(0);
+            }
+>>>>>>> master:Projet/Assets/Scripts/ScriptsClasses/Four.cs
+        }
+
+    }
 
     override
     public void utiliser()
@@ -49,7 +80,7 @@ public class Four : Objet
     public Transform interaction(GameObject destination)
     {
         MiniObjet scriptMiniObjet = null;
-        if (destination!=null)
+        if (destination != null)
         {
             //Trouver le script de l'objet que le joueur tien dans ses mains
             Joueur scriptJoueur = null;
@@ -57,10 +88,10 @@ public class Four : Objet
 
             scriptMiniObjet = trouverInteraction(scriptJoueur.objetTenu, scriptMiniObjet);
         }
- 
+
         if (scriptMiniObjet != null) //Le joueur tient un objet
         {
-            for (int i= 0; i < listeDestinationsLibres.Length; i++)
+            for (int i = 0; i < listeDestinationsLibres.Length; i++)
             {
                 if (!listeDestinationsLibres[i])
                 {
@@ -107,6 +138,6 @@ public class Four : Objet
         miniObjet.gameObject.tag = "ObjetTenu";
         miniObjet.gameObject.transform.position = destination.position + destination.up;
         miniObjet.gameObject.GetComponent<Collider>().isTrigger = false;
-        miniObjet.gameObject.GetComponent<Rigidbody>().isKinematic = true;  
+        miniObjet.gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 }
