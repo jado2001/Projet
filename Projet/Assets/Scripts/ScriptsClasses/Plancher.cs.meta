@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - matSale: {fileID: 2100000, guid: cfc61d21f4bdaca408bd68ac6c139cd5, type: 2}
-  - alien: {fileID: 100116, guid: e5836d050fdb354479bcd0d285bf2f22, type: 3}
+  - alien: {fileID: 5638788130549690747, guid: 2bde89219142842f4ac66efb958c651b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
