@@ -6,21 +6,24 @@ using System;
 
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Gère les mouvements de l'alien, son comportement, ainsi que son animation
+/// </summary>
 public class Alien : Objet
 {
-    public Joueur joueur;
+    public Joueur joueur; //Le joueur ciblé par l'alien
 
-    public NavMeshAgent agent;
+    public NavMeshAgent agent; //le NavMeshAgent de l'alien (gère son pathfinding)
 
-    public Animator animator;
+    public Animator animator; //L'animator utilisé par l'alien
 
-    private float rotation;
+    private float rotation; //L'angle que l'alien regarde
 
-    public Porte porteActive = null;
+    public Porte porteActive = null; //La porte ciblée par l'alien
 
-    private float tempsRestant;
+    private float tempsRestant;//Le temps restant avant une nouvelle exécution de l'animation
 
-    private float tempsIdle;
+    private float tempsIdle;//Le temps depuis que l'alien a arrêté de bouger
 
 
     override
@@ -47,7 +50,10 @@ public class Alien : Objet
         verComportement(2);
 
     }
-
+    /// <summary>
+    /// Vérification du comportoment et ce qu'il fait
+    /// </summary>
+    /// <param name="dommage"></param> le dommage que l'alien implique aux objets et aux joueurs
     public void verComportement(float dommage)
     {
 
@@ -96,9 +102,14 @@ public class Alien : Objet
             transform.rotation = Quaternion.LookRotation(porteActive.transform.position - transform.position);//regarde la porte
             attaquerPorte(1, dommage);//attaque la porte
         }
-
     }
 
+    /// <summary>
+    /// Méthode qui trouve un script de l'objet sélectionné
+    /// </summary>
+    /// <param name="hit"></param> le transform dans lequel il va chercher le script
+    /// <param name="objetType"></param> le genre du script cherché
+    /// <returns></returns>
     private T trouverInteraction<T>(Transform hit, T objetType) where T : MonoBehaviour
     {
         //Aller a travers la liste des scripts de l'objet pour utiliser celui qui possede interaction
@@ -115,6 +126,11 @@ public class Alien : Objet
         }
         return null;
     }
+    /// <summary>
+    /// Méthode pour attaquer la porte
+    /// </summary>
+    /// <param name="time"></param> à quelle fréquence l'alien attaque la porte
+    /// <param name="dommage"></param> quel dommage est infligé à la porte
     public void attaquerPorte (float time, float dommage)
     {
         if (tempsRestant >= time) //si sa fait plus que "time" secondes
@@ -130,7 +146,11 @@ public class Alien : Objet
             tempsRestant += Time.deltaTime;//ajout le temps de la frame
         }
     }
-
+    /// <summary>
+    /// Méthode pour attaquer le joueur
+    /// </summary>
+    /// <param name="time"></param>à quelle fréquence l'alien attaque le joueur
+    /// <param name="dommage"></param> quel dommage est infligé au joueur
     public void attaquerJoueur(float time, float dommage)
     {
         if (tempsRestant >= time) //si sa fait plus que "time" secondes
@@ -146,7 +166,12 @@ public class Alien : Objet
             tempsRestant += Time.deltaTime;//ajout le temps de la frame
         }
     }
-    public Vector3 RandomNavmeshLocation(float radius)//trouve un point aléatoire de "radius" de rayon
+    /// <summary>
+    /// Méthode qui sert à trouver un point aléatoire autour d'un certain point
+    /// </summary>
+    /// <param name="radius"></param> Distance maximale du point aléatoire
+    /// <returns></returns>
+    public Vector3 RandomNavmeshLocation(float radius)
     {
         Vector3 randomDirection = Random.insideUnitSphere * radius; //vecteur aléatoire
         randomDirection += transform.position;//vecteur aléatoire à partir de l'alien
