@@ -11,11 +11,7 @@ public class Four : Objet
     public List<MiniObjet> listeCasseroles = new List<MiniObjet>();
     public bool[] listeDestinationsLibres = new bool[4];
     public int nombreObjetsEnFeu;
-<<<<<<< HEAD:Projet/Assets/Scripts/Scripts Classes/Four.cs
     public List<CuissonHandler> listeCanvas= new List<CuissonHandler>();
-=======
-    public List<CuissonHandler> listeCanvas = new List<CuissonHandler>();
->>>>>>> master:Projet/Assets/Scripts/ScriptsClasses/Four.cs
 
     //Lui c'est le bon
     // Update is called once per frame
@@ -44,29 +40,19 @@ public class Four : Objet
         }
 
         //Modifer la barre de cuisson
-<<<<<<< HEAD:Projet/Assets/Scripts/Scripts Classes/Four.cs
+
         for (int i=0;i<listeCanvas.Count;i++)
-=======
-        for (int i = 0; i < listeCanvas.Count; i++)
->>>>>>> master:Projet/Assets/Scripts/ScriptsClasses/Four.cs
+
         {
             if (listeDestinationsLibres[i])
             {
                 listeCanvas[i].SetCuissonBarValue(listeCasseroles[i].cuisson / 30.0f);
-<<<<<<< HEAD:Projet/Assets/Scripts/Scripts Classes/Four.cs
             } else
             {
                 listeCanvas[i].SetCuissonBarValue(0);
             }
         }
-    
-=======
-            }
-            else
-            {
-                listeCanvas[i].SetCuissonBarValue(0);
-            }
->>>>>>> master:Projet/Assets/Scripts/ScriptsClasses/Four.cs
+
         }
 
     }
