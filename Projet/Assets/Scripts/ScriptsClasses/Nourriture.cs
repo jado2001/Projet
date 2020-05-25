@@ -47,7 +47,7 @@ public class Nourriture : MiniObjet
     override
     public void lancer()
     {
-        transform.gameObject.tag = "NourritureFrigo"; 
+         
     }
 
 }
