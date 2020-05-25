@@ -64,7 +64,7 @@ public class Porte : Objet
     /// <summary>
     /// Méthode pour bouger la porte
     /// </summary>
-    void mouvement()
+    public virtual void  mouvement()
     {
         transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
         distanceTravelled += Vector3.Distance(transform.position, lastPosition);
@@ -73,7 +73,7 @@ public class Porte : Objet
     /// <summary>
     /// Méthode qui remplace la porte
     /// </summary>
-    void remplacerPorte()
+   public  void remplacerPorte()
     {
         
        GameObject PorteDetruite = Instantiate(porteDetruite, transform.position, Quaternion.identity) as GameObject; //créé un nouvel objet avec le modèle de la porte détruite

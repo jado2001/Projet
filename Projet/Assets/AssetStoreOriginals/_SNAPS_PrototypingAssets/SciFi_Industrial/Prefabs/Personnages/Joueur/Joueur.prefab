@@ -117,13 +117,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293d3ba519f833f4880ed3ee9199ae60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
   camera: {fileID: 7805362211942823304}
   objetTenu: {fileID: 0}
   destination: {fileID: 7805362212561151908}
   forceDeLancer: 1000
   tailleRamasse: 0
   layerObjet: 0
+  joueur: {fileID: 0}
 --- !u!1 &7805362211942823306
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,3 +350,4 @@ MonoBehaviour:
   jaugeDeFaim: 100
   vitesse: 10
   objetTenu: {fileID: 0}
+  range: 0

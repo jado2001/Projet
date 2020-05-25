@@ -48,7 +48,7 @@ public class Enter : MonoBehaviour
                 Debug.Log(" ca fonctionne p");
 
                 guiObj.SetActive(false);
-                player.transform.parent = gameObject.transform;
+                //player.transform.parent = gameObject.transform;
                 vehicleScript.enabled = true;
                 inputScript.enabled = true;
                 physicsScript.enabled = true;
