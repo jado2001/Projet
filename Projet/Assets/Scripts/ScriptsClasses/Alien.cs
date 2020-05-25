@@ -11,6 +11,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Alien : Objet
 {
+    public GameObject vaisseau;//le vaisseau
     public Joueur joueur; //Le joueur ciblé par l'alien
 
     public NavMeshAgent agent; //le NavMeshAgent de l'alien (gère son pathfinding)
@@ -37,10 +38,11 @@ public class Alien : Objet
 
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
-
+        gameObject.transform.parent = vaisseau.transform.parent;
     }
 
     // Update is called once per frame

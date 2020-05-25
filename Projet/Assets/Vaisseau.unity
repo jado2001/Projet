@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311912, g: 0.3807398, b: 0.3587271, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1269,6 +1269,7 @@ MonoBehaviour:
   layerObjet: 0
   durabilitee: 0
   halo: {fileID: 0}
+  vaisseau: {fileID: 1641086654}
   joueur: {fileID: 332956003}
   agent: {fileID: 271289079}
   animator: {fileID: 271289081}
@@ -4019,7 +4020,7 @@ Transform:
   m_LocalScale: {x: 0.46366298, y: 0.46366298, z: 0.46366298}
   m_Children: []
   m_Father: {fileID: 1519413845}
-  m_RootOrder: 661
+  m_RootOrder: 667
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &756111087
 Mesh:
@@ -6416,7 +6417,7 @@ Transform:
   m_LocalScale: {x: 0.46366298, y: 0.46366298, z: 0.46366298}
   m_Children: []
   m_Father: {fileID: 1519413845}
-  m_RootOrder: 655
+  m_RootOrder: 661
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1239695596
 Mesh:
@@ -7525,7 +7526,7 @@ Transform:
   m_LocalScale: {x: 0.46366298, y: 0.46366298, z: 0.46366298}
   m_Children: []
   m_Father: {fileID: 1519413845}
-  m_RootOrder: 656
+  m_RootOrder: 662
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1502239387
 Mesh:
@@ -11975,6 +11976,12 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.87500006, y: 1.187, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &1641086654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7956497290742834234, guid: 2eb1804941e6ef8489929c419f8e0980,
+    type: 3}
+  m_PrefabInstance: {fileID: 1641086595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1660509520
 Mesh:
   m_ObjectHideFlags: 0
@@ -13805,7 +13812,7 @@ Transform:
   m_LocalScale: {x: 0.46366298, y: 0.46366298, z: 0.46366298}
   m_Children: []
   m_Father: {fileID: 1519413845}
-  m_RootOrder: 660
+  m_RootOrder: 666
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2135894353
 GameObject:
@@ -13865,5 +13872,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1519413845}
-  m_RootOrder: 654
+  m_RootOrder: 660
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
