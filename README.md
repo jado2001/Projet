@@ -5,18 +5,20 @@ Mode d'emploi:
 
 
 Touche E : Interagir avec les objets (pour les ramasser par exemple)
-Clic droit : Utiliser un objet qu'on tient
-Clic gauche: Lancer un objet qu'on tient
+Clic droit : Lancer un objet qu'on tient
+Clic gauche: Utiliser un objet qu'on tient
+
 
 M : maximiser la taille de l'écran
 Espace: Sauter
 Autres touches : Voir les touches affichées dans les dialogues sur les boutons pour faire des choix
 
+
 Ménage:  
 
 La saleté apparaît à chaque intervalle de temps qui peut durer  entre 2 et 10 minutes après le début du jeu. Pour s'en débarrasser, 
 il faut nettoyer les tuiles sales du plancher avec le balai. Si on prend trop de temps à nettoyer le plancher, des bébés extraterrestres
-commencent à naître è partir de la saleté et vont commencer à chercher de la nourriture pour pouvoir se transformer en extraterrestre adulte.
+commencent à naître à partir de la saleté et vont commencer à chercher de la nourriture pour pouvoir se transformer en extraterrestre adulte.
 
 Cuisine:
 
@@ -77,16 +79,23 @@ Il y a 4 panneaux électriques dans le vaisseau. Ils ont la forme d'un cube et s
 de chaque panneau, il faut interagir avec le panneau cubique. Cela vous transportera dans le mini-jeu qui peut être joué grâce 
 aux touches du clavier. On peut seulement retourner au vaisseau en finissant le mini-jeu.
 
+
 Salle des contrôles:
 
 C'est la salle près du centre du vaisseau. Elle contient des écrans qui diffusent le contenu de plusieurs caméras réparties dans le vaisseau.
 Il y a aussi un bouton sur la table des écrans pour fermer ou ouvrir toutes les portes du vaisseau.
+
 
 Vol:
 
 Pour voler, il faut interagir avec une chaise se trouvant dans une des extrémités du vaisseau. Il suffit de suivre les instructions à l'écran
 pour savoir comment faire voler le vaisseau.
 
+
 Faim:
 
 La jauge de faim diminue à chaque 2 minutes d'une valeur aléatoire. Il faut manger pour remplir la jauge de faim.
+
+Extraterrestres:
+
+Ils peuvent détruire des portes et attaquer le joueur. Les bébés extraterrestres font la moitié des dommages que fait un extraterrestre adulte.
