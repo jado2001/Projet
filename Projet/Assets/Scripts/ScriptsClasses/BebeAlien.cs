@@ -15,7 +15,10 @@ public class BebeAlien : Alien
     public float faim = 50;/// <summary> la jauge de faim du bébé
     private Vector3 distance; /// <summary> la distance entre un aliment et le bébé
 
-
+        void Start()
+    {
+        gameObject.transform.parent = vaisseau.transform.parent;
+    }
 
     // Update is called once per frame
     void FixedUpdate()

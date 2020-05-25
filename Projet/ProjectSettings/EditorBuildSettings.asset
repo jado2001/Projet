@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Vaisseau.unity
+    path: Assets/Jeu Final/Vaisseau.unity
     guid: eed36dba6391bf545b651aad8cece4e4
   - enabled: 1
     path: Assets/Scenes/Dialogue/Dialogue.unity

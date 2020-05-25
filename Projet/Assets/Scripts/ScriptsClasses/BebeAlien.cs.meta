@@ -3,7 +3,14 @@ guid: b530909e1da3649fc8e52eb5a2663c59
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - halo: {instanceID: 0}
+  - vaisseau: {fileID: 1864422823695791816, guid: 291591fea9e0af34184ddda628fe0d5f,
+      type: 3}
+  - joueur: {instanceID: 0}
+  - agent: {instanceID: 0}
+  - animator: {instanceID: 0}
+  - porteActive: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
